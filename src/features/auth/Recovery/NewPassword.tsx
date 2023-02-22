@@ -6,6 +6,8 @@ import { Navigate, useParams } from 'react-router-dom'
 import { isPasswordChangedSelector } from '../authSelectors'
 import { setNewPasswordTC } from '../authSlice'
 
+import style from './NewPassword.module.scss'
+
 import { Button } from 'common/components/Button/Button'
 import { FormWrapper } from 'common/components/Form/FormWrapper/FormWrapper'
 import s from 'common/components/Form/FormWrapper/FormWrapper.module.scss'
@@ -52,7 +54,10 @@ export const NewPassword = () => {
           register={register}
           error={errorConfirmPwd}
         />
-        <Button isValid={isValid} title={'New password'} type={'submit'} />
+
+        <Button className={style.btnPass} isValid={isValid} type={'submit'}>
+          New password
+        </Button>
       </form>
     </FormWrapper>
   )

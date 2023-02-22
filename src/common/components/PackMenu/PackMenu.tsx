@@ -14,14 +14,6 @@ import teacher from 'assets/teacher.svg'
 import { PATH } from 'common/constans/path'
 import { useAppDispatch, useAppSelector } from 'common/hooks'
 import { fetchCardTC, setSearchCardParams } from 'features/cards/cardSlice'
-import Modal from 'features/modals/Modal'
-import { isPackDeletedSelector, modalTypeSelector } from 'features/modals/modalSelectors'
-import {
-  setChangedItemId,
-  setChangedItemName,
-  setIsPackDeleted,
-  setModal,
-} from 'features/modals/modalSlice'
 
 type PackMenuType = {
   title: string
@@ -35,10 +27,10 @@ export const PackMenu: FC<PackMenuType> = ({ title, packId }) => {
   console.log(id)
 
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null)
-  const modalType = useAppSelector(modalTypeSelector)
+  // const modalType = useAppSelector(modalTypeSelector)
   const cards = useAppSelector(state => state.card.cards)
   const searchParams = useAppSelector(state => state.card.searchParams)
-  const isPackDeleted = useAppSelector(isPackDeletedSelector)
+  // const isPackDeleted = useAppSelector(isPackDeletedSelector)
   const open = Boolean(anchorEl)
   const dispatch = useAppDispatch()
   const navigate = useNavigate()
@@ -51,17 +43,17 @@ export const PackMenu: FC<PackMenuType> = ({ title, packId }) => {
 
   const deletePack = () => {
     if (packId) {
-      dispatch(setModal('deletePack'))
-      dispatch(setChangedItemId(packId))
-      dispatch(setChangedItemName(title))
+      // dispatch(setModal('deletePack'))
+      // dispatch(setChangedItemId(packId))
+      // dispatch(setChangedItemName(title))
     }
   }
 
   const updatePack = () => {
     if (packId) {
-      dispatch(setModal('updatePack'))
-      dispatch(setChangedItemId(packId))
-      dispatch(setChangedItemName(title))
+      // dispatch(setModal('updatePack'))
+      // dispatch(setChangedItemId(packId))
+      // dispatch(setChangedItemName(title))
     }
   }
 
@@ -73,11 +65,11 @@ export const PackMenu: FC<PackMenuType> = ({ title, packId }) => {
     return navigate(PATH.CARD_LEARN)
   }
 
-  if (isPackDeleted) {
-    dispatch(setIsPackDeleted(false))
-
-    return <Navigate to={PATH.PACK_LIST} />
-  }
+  // if (isPackDeleted) {
+  //   dispatch(setIsPackDeleted(false))
+  //
+  //   return <Navigate to={PATH.PACK_LIST} />
+  // }
 
   return (
     <React.Fragment>
@@ -85,7 +77,7 @@ export const PackMenu: FC<PackMenuType> = ({ title, packId }) => {
         <h2 className={s.title}>{title}</h2>
         <img className={s.dots} onClick={handleClick} src={dots} alt={'dots'} />
       </div>
-      {modalType !== 'idle' && <Modal modalType={modalType} />}
+      {/*{modalType !== 'idle' && <Modal modalType={modalType} />}*/}
       <Menu
         anchorEl={anchorEl}
         id="account-menu"

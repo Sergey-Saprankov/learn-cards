@@ -12,6 +12,8 @@ import { formHandler } from '../../../common/utils'
 import { isLoggedInSelector } from '../authSelectors'
 import { loginTC } from '../authSlice'
 
+import style from './Login.module.scss'
+
 export const Login = () => {
   const dispatch = useAppDispatch()
   const isLoggedIn = useAppSelector(isLoggedInSelector)
@@ -55,7 +57,9 @@ export const Login = () => {
           nameForValidate={'password'}
         />
         <CheckBox label={'Remember Me'} nameForValidate={'rememberMe'} register={register} />
-        <Button isValid={isValid} title={'Sign In'} type={'submit'}></Button>
+        <Button className={style.loginBtn} isValid={isValid} type={'submit'}>
+          Sign In
+        </Button>
       </form>
     </FormWrapper>
   )

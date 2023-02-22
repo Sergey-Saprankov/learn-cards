@@ -1,23 +1,23 @@
-import React, { FC, memo } from 'react'
+import React, { ButtonHTMLAttributes, FC, memo } from 'react'
 
 import s from './Button.module.scss'
 
-type ButtonType = {
-  type?: 'submit'
-  title: string
+interface ButtonType extends ButtonHTMLAttributes<HTMLButtonElement> {
   isValid?: boolean
-  callBack?: () => void
+  className?: string
 }
 
-export const Button: FC<ButtonType> = memo(({ type, title, isValid, callBack }) => {
-  return (
-    <button
-      onClick={callBack}
-      disabled={isValid ? !isValid : false}
-      className={s.btn}
-      type={type ? type : undefined}
-    >
-      {title}
-    </button>
-  )
-})
+export const Button: FC<ButtonType> = memo(
+  ({ type, isValid, children, className, onClick, ...other }) => {
+    return (
+      <button
+        onClick={onClick}
+        disabled={isValid ? !isValid : false}
+        className={`${s.btn} ${className}`}
+        type={type}
+      >
+        {children}
+      </button>
+    )
+  }
+)

@@ -26,7 +26,6 @@ import { TablePackListWrapper } from 'common/components/Table/TablePackListWrapp
 import { TbodyCard } from 'common/components/Table/TbodyCard/TbodyCard'
 import { Thead } from 'common/components/Table/Thead/Thead'
 import { useAppDispatch, useAppSelector } from 'common/hooks'
-import { setChangedItemId, setModal } from 'features/modals/modalSlice'
 
 export const CardList = () => {
   const dispatch = useAppDispatch()
@@ -53,8 +52,8 @@ export const CardList = () => {
   const createCards = useCallback(() => {
     if (!id) return
 
-    dispatch(setModal('createCard'))
-    dispatch(setChangedItemId(id))
+    // dispatch(setModal('createCard'))
+    // dispatch(setChangedItemId(id))
   }, [id])
 
   useEffect(

@@ -11,14 +11,6 @@ import { CardsRating } from '../../Rating/Rating'
 import s from './TbodyCard.module.scss'
 
 import { useAppDispatch, useAppSelector } from 'common/hooks'
-import {
-  setChangedItemAnswer,
-  setChangedItemCardsId,
-  setChangedItemId,
-  setChangedItemName,
-  setModal,
-} from 'features/modals/modalSlice'
-
 type TbodyType = {
   card?: CardType[]
 }
@@ -31,9 +23,9 @@ export const TbodyCard: React.FC<TbodyType> = memo(({ card }) => {
   let isMyCard = userId === packUserId
 
   const onClickDeleteHandler = (cardID: string, cardsPackID: string, cardName: string) => {
-    dispatch(setModal('deleteCard'))
-    dispatch(setChangedItemName(cardName))
-    dispatch(setChangedItemId(cardID))
+    // dispatch(setModal('deleteCard'))
+    // dispatch(setChangedItemName(cardName))
+    // dispatch(setChangedItemId(cardID))
   }
   const onClickUpdateHandler = (
     cardID: string,
@@ -41,11 +33,11 @@ export const TbodyCard: React.FC<TbodyType> = memo(({ card }) => {
     cardQuestion: string,
     cardAnswer: string
   ) => {
-    dispatch(setModal('updateCard'))
-    dispatch(setChangedItemId(cardID))
-    dispatch(setChangedItemName(cardQuestion))
-    dispatch(setChangedItemAnswer(cardAnswer))
-    dispatch(setChangedItemCardsId(cardsPackID))
+    // dispatch(setModal('updateCard'))
+    // dispatch(setChangedItemId(cardID))
+    // dispatch(setChangedItemName(cardQuestion))
+    // dispatch(setChangedItemAnswer(cardAnswer))
+    // dispatch(setChangedItemCardsId(cardsPackID))
   }
 
   useEffect(() => {

@@ -1,4 +1,6 @@
-.discription {
+@import "src/common/styles/mixins";
+
+.description {
   margin-bottom: 20px;
 
   font-size: 14px;
@@ -9,4 +11,11 @@
   text-align: center;
 
   opacity: 0.5;
+}
+
+
+
+.btn {
+  @include formButton;
+  padding: 7px 15px;
 }

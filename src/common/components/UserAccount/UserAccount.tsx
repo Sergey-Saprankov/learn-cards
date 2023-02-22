@@ -2,6 +2,7 @@ import React from 'react'
 
 import { Navigate, useNavigate } from 'react-router-dom'
 
+import { Button } from '../Button/Button'
 import EditableSpan from '../EditableSpan/EditableSpan'
 
 import s from './UserAccount.module.scss'
@@ -53,10 +54,10 @@ export const UserAccount = () => {
           <EditableSpan value={userName} />
 
           <span className={s.emailText}>{user.email}</span>
-          <span onClick={logoutHandler} className={s.logOut}>
+          <Button onClick={logoutHandler} className={s.logOut}>
             <img className={s.logOutIcon} src={logout} alt="button logout" />
             <span className={s.logOutText}>Log out</span>
-          </span>
+          </Button>
         </div>
       </div>
     </div>

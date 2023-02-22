@@ -1,0 +1,5 @@
+@import "src/common/styles/mixins";
+
+.btn {
+  @include formButton;
+}

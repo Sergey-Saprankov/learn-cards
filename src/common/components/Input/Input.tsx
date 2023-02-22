@@ -1,4 +1,4 @@
-import React, { FC, memo, useState } from 'react'
+import React, { FC, InputHTMLAttributes, memo, useState } from 'react'
 
 import { FieldValues, UseFormRegister } from 'react-hook-form'
 
@@ -7,8 +7,8 @@ import s from './Input.module.scss'
 import noEye from 'assets/eye-close.svg'
 import eye from 'assets/eye.svg'
 
-type InputType = {
-  label: string
+interface InputType extends InputHTMLAttributes<HTMLInputElement> {
+  label?: string
   type: string
   placeholder?: string
   error?: string
@@ -17,7 +17,7 @@ type InputType = {
 }
 
 export const Input: FC<InputType> = memo(
-  ({ type, label, placeholder, error, register, nameForValidate }) => {
+  ({ type, label, placeholder, error, register, nameForValidate, ...arg }) => {
     const [typeInput, setTypeInput] = useState<string>(type)
     const showPasswordHandler = () => {
       typeInput === 'password' ? setTypeInput('text') : setTypeInput('password')

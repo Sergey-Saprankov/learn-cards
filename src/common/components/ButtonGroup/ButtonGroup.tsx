@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from 'react'
 
+import { Button } from '../Button/Button'
+
 import s from './ButtonGroup.module.scss'
 
 import { useAppDispatch, useAppSelector } from 'common/hooks'
@@ -37,18 +39,18 @@ export const ButtonGroup = () => {
     <div className={s.container}>
       <h3 className={s.title}>Show packs cards</h3>
       <div className={s.buttonGroupe}>
-        <button
+        <Button
           onClick={showUserPacksHandler}
           className={toggle === 'my' ? `${s.btn} ${s.active}` : s.btn}
         >
           My
-        </button>
-        <button
+        </Button>
+        <Button
           onClick={showAllPacksHandler}
           className={toggle === 'all' ? `${s.btn} ${s.active}` : s.btn}
         >
           All
-        </button>
+        </Button>
       </div>
     </div>
   )

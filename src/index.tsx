@@ -17,9 +17,7 @@ const root = createRoot(document.getElementById('root') as HTMLElement)
 root.render(
   <HashRouter>
     <Provider store={store}>
-      <ThemeProvider theme={blackTheme}>
-        <App />
-      </ThemeProvider>
+      <App />
     </Provider>
   </HashRouter>
 )

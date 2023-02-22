@@ -6,6 +6,8 @@ import { Navigate } from 'react-router-dom'
 import { isMessageSendSelector } from '../authSelectors'
 import { recoveryTC } from '../authSlice'
 
+import style from './Recovery.module.scss'
+
 import { Button } from 'common/components/Button/Button'
 import { FormWrapper } from 'common/components/Form/FormWrapper/FormWrapper'
 import s from 'common/components/Form/FormWrapper/FormWrapper.module.scss'
@@ -49,7 +51,9 @@ export const Recovery = () => {
         />
 
         {descriptionText}
-        <Button isValid={isValid} title={'Send Instructions'} type={'submit'} />
+        <Button className={style.btn} type={'submit'} isValid={isValid}>
+          Send Instructions
+        </Button>
       </form>
     </FormWrapper>
   )

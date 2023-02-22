@@ -1,5 +1,7 @@
 import React, { FC, memo } from 'react'
 
+import { Button } from '../../../../common/components/Button/Button'
+
 import s from './PacksHeader.module.scss'
 
 type PacksHeaderType = {
@@ -12,9 +14,9 @@ export const PacksHeader: FC<PacksHeaderType> = memo(({ title, buttonTitle, onCl
   return (
     <div className={s.innerWrapper}>
       <h2 className={s.title}>{title}</h2>
-      <button onClick={onClick} className={s.btn}>
+      <Button onClick={onClick} className={s.btn}>
         {buttonTitle}
-      </button>
+      </Button>
     </div>
   )
 })

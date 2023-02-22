@@ -1,6 +1,9 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 
 import './App.css'
+
+import { Button } from '../common/components/Button/Button'
+import { Modal } from '../common/components/Modal/Modal'
 
 import { appStatusSelector, isInitializedSelector } from './appSelectors'
 
@@ -9,16 +12,14 @@ import Loader from 'common/components/Loader/Loader'
 import SimpleSnackbar from 'common/components/SnackBar/Snackbar'
 import { useAppDispatch, useAppSelector } from 'common/hooks'
 import { authMeTC } from 'features/auth/authSlice'
-import Modal from 'features/modals/Modal'
-import { modalTypeSelector } from 'features/modals/modalSelectors'
 import Pages from 'pages/Pages'
 
 function App() {
   const dispatch = useAppDispatch()
-
+  const [isOpen, setOpen] = useState<boolean>(false)
   const isInitialized = useAppSelector(isInitializedSelector)
   const appStatus = useAppSelector(appStatusSelector)
-  const modalType = useAppSelector(modalTypeSelector)
+  // const modalType = useAppSelector(modalTypeSelector)
 
   useEffect(() => {
     dispatch(authMeTC())
@@ -29,9 +30,15 @@ function App() {
   }
 
   return (
-    <div className={modalType !== 'idle' ? 'app modalActive' : 'app'}>
+    <div className={'app'}>
+      <Modal isOpen={isOpen} onClose={() => setOpen(false)}>
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolore facere magni nostrum
+        officiis rem. Accusantium ad, culpa dolorem doloremque eos est eum ipsum iste minus numquam
+        obcaecati quae voluptatem. Tenetur?
+      </Modal>
+      <Button onClick={() => setOpen(true)}>toggle</Button>
       <Header />
-      {modalType !== 'idle' && <Modal modalType={modalType} />}
+      {/*{modalType !== 'idle' && <Modal modalType={modalType} />}*/}
       <Pages />
       <SimpleSnackbar />
       {appStatus === 'loading' && <Loader />}

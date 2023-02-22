@@ -2,6 +2,7 @@ import React, { FC, memo } from 'react'
 
 import { useNavigate, useParams } from 'react-router-dom'
 
+import { Button } from '../../../../common/components/Button/Button'
 import { PATH } from '../../../../common/constans/path'
 import { authUserIdSelector } from '../../../auth/authSelectors'
 import { packNameCardSelector, packUserIdCardSelector } from '../cardSelectors'
@@ -37,17 +38,17 @@ export const CardHeader: FC<CardHeaderType> = memo(({ onClick }) => {
         {!isMyCard && <div>{`@${packByName}`}</div>}
       </div>
       {isMyCard ? (
-        <button onClick={onClick} className={s.btn}>
+        <Button onClick={onClick} className={s.btn}>
           Add new card
-        </button>
+        </Button>
       ) : (
-        <button
+        <Button
           onClick={() => navigate(PATH.CARD_LEARN)}
           className={s.btn}
           disabled={pack && pack.cardsCount === 0}
         >
           Learn to pack
-        </button>
+        </Button>
       )}
     </div>
   )

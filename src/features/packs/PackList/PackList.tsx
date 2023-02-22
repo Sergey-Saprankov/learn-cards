@@ -1,6 +1,5 @@
 import React, { useEffect } from 'react'
 
-import { setModal } from '../../modals/modalSlice'
 import {
   packsCountOnPageSelector,
   packsListSelector,
@@ -50,7 +49,7 @@ export const PackList = () => {
   }
 
   const createPack = () => {
-    dispatch(setModal('createPack'))
+    // dispatch(setModal('createPack'))
   }
 
   const searchByName = (value: string) => {
