@@ -10,5 +10,5 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 ## Production
 
-### [Production link ](https://pikadorius.github.io/project_cards/)
+### [Production link ](https://sergey-saprankov.github.io/cards/)
 
