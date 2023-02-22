@@ -1,0 +1,136 @@
+@mixin input {
+  .labelInput {
+    position: relative;
+
+    font-size: 13px;
+    font-weight: 400;
+
+    .input {
+      width: 347px;
+      height: 45px;
+      padding: 5px;
+
+      font-size: 16px;
+      font-weight: 500;
+      line-height: 24px;
+      color: #000;
+
+      background: #fff;
+      border: none;
+      border-bottom: 1px solid gray;
+
+      &:hover {
+        border-bottom: 1px solid gray;
+        outline: none;
+      }
+
+      &:focus {
+        border-bottom: 1px solid gray;
+        outline: none;
+      }
+    }
+
+    .errorInput {
+      border-color: #cc1439;
+    }
+
+    .iconShowPassword {
+      cursor: pointer;
+      width: 24px;
+      height: 24px;
+      position: absolute;
+      top: 50%;
+      right: 2%;
+      transform: translateY(-50%);
+    }
+
+    .errorText {
+      color: #ff244b;
+    }
+  }
+}
+
+@mixin flexCenter {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@mixin btn {
+  transition: all 0.2s ease-in-out;
+  &:disabled {
+    opacity: 0.5;
+
+    &:hover {
+      transform: none;
+    }
+
+    &:active {
+      transform: none;
+    }
+  }
+  &:hover {
+    transform: translateY(1px);
+    opacity: 0.9;
+  }
+  &:active {
+    transform: translateY(-1px);
+  }
+}
+
+@mixin sort {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+
+  .title {
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 17px;
+  }
+}
+
+@mixin tr {
+  height: 52.5px;
+  border: 1px solid rgba(190, 186, 186, 0.13);
+}
+
+@mixin td {
+  max-width: calc((100vw - 35vw) / 4);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  &:first-child {
+    width: 35vw;
+  }
+}
+
+@mixin backward {
+  cursor: pointer;
+
+  position: absolute;
+  top: 30px;
+  left: 0;
+
+  display: flex;
+  gap: 12px;
+  align-items: center;
+
+  transition: all 0.3s ease-in-out;
+
+  &:hover {
+    transform: translateX(-5px);
+  }
+
+  .arrow {
+    width: 14px;
+    height: 9px;
+  }
+
+  .backwardText {
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 24px;
+  }
+}
