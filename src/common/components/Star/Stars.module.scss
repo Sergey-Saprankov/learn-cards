@@ -1,0 +1,35 @@
+.starBlock {
+  position: relative;
+  .hoverBlock {
+    transition: all .2s ease-in-out;
+    &:hover {
+      .text {
+        display: block;
+      }
+    }
+
+    .text {
+      width: min-content;
+      display: none;
+      position: absolute;
+      bottom: -20px;
+      left: 50%;
+      transform: translateX(-50%);
+      min-width: max-content;
+      font-size: 12px;
+      transition: all .2s ease-in-out;
+    }
+    .star {
+      width: 30px;
+      height: 30px;
+      fill: #fff;
+      cursor: pointer;
+      }
+
+    .hover {
+      fill: #fff500;
+    }
+    }
+
+
+  }
