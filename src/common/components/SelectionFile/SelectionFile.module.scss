@@ -1,0 +1,31 @@
+.container {
+  position: relative;
+  width: 100%;
+  min-width: 300px;
+  min-height: 100px;
+  border: 1px solid #212121;
+  border-radius: 1em;
+}
+
+.label {
+  align-self: start;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(244, 241, 241, 0.44);
+  border-radius: 1em;
+  cursor: pointer;
+
+  .labelText {
+    color: #8b8b8b;
+  }
+
+  &:hover {
+    opacity: .7;
+  }
+}

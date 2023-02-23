@@ -2,7 +2,9 @@ import React, { FC, memo, ReactNode, MouseEvent, useEffect, useState, useCallbac
 
 import { set } from 'react-hook-form'
 
-import { useDebounce } from '../../hooks'
+import { isClosingForAnimation } from '../../../app/appSelectors'
+import { isClosingModal, setModalStatus } from '../../../app/appSlice'
+import { useAppDispatch, useAppSelector, useDebounce } from '../../hooks'
 import { classNames } from '../../utils/classNames'
 import { Portal } from '../Portal/Portal'
 
@@ -16,19 +18,20 @@ type ModalType = {
 }
 
 export const Modal: FC<ModalType> = memo(({ children, onClose, isOpen, className }) => {
-  const [isClosing, setClosing] = useState(false)
-  let debouncedValue = useDebounce<boolean>(isClosing, 400)
+  const dispatch = useAppDispatch()
+  const isClosing = useAppSelector(isClosingForAnimation)
+  let debouncedValue = useDebounce<boolean>(isClosing, 300)
 
   useEffect(() => {
-    onClose?.()
-    setClosing(false)
+    dispatch(setModalStatus('idle'))
+    dispatch(isClosingModal(false))
   }, [debouncedValue])
 
   className = className ? className : ''
 
-  const onCloseHandler = useCallback(() => {
-    setClosing(true)
-  }, [onClose])
+  const onCloseHandler = () => {
+    dispatch(isClosingModal(true))
+  }
 
   const onContentState = (e: MouseEvent<HTMLDivElement>) => {
     e.stopPropagation()

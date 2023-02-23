@@ -1,0 +1,55 @@
+@import 'src/common/styles/mixins';
+.container {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 30px;
+  padding: 20px;
+
+  .title {
+    font-size: 22px;
+  }
+}
+
+.checkBoxContainer {
+  width: 100%;
+  align-self: flex-start;
+
+  .label {
+    width: max-content;
+    align-content: flex-start;
+    display: flex;
+    gap: 10px;
+
+    .checkBox {
+      min-width: 15px;
+      max-width: 15px;
+      max-height: 15px;
+    }
+  }
+
+}
+
+
+
+.buttonContainer {
+  display: flex;
+  gap: 40px;
+}
+
+.btn {
+  padding: 10px 15px;
+  font-size: 16px;
+  border-radius: 30px;
+  background-color: #fff;
+  border: 1px solid #212121;
+  //box-shadow: 0 4px 18px rgba(27, 27, 28, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.3);
+  color: #212121;
+}
+
+.primary {
+  color: #fff;
+  background: #212121;
+  box-shadow: 0 4px 18px rgba(27, 27, 28, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.3);
+}

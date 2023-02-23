@@ -1,6 +1,9 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 
+export type StatusCardsModal = 'Add new card' | 'Edit card' | 'Delete card'
+export type StatusPackModal = 'ChangePackForm' | 'DeletePack'
 type StatusType = 'idle' | 'loading' | 'failed' | 'success'
+export type ModalStatus = 'idle' | StatusPackModal | StatusCardsModal
 
 const packList = [
   { title: 'Name', status: 0, sortName: 'name' },
@@ -27,6 +30,8 @@ type InitialStateType = {
   isInitialized: boolean
   packList: PackListType
   cardList: CardListType
+  modalStatus: ModalStatus
+  isClosingForAnimation: boolean
 }
 
 const initialState: InitialStateType = {
@@ -35,6 +40,8 @@ const initialState: InitialStateType = {
   isInitialized: false,
   packList,
   cardList,
+  modalStatus: 'idle',
+  isClosingForAnimation: false,
 }
 
 export const appSlice = createSlice({
@@ -59,6 +66,12 @@ export const appSlice = createSlice({
     resetSort: state => {
       state.packList = state.packList.map(t => (t.status ? { ...t, status: 0 } : t))
     },
+    setModalStatus: (state, action: PayloadAction<ModalStatus>) => {
+      state.modalStatus = action.payload
+    },
+    isClosingModal: (state, action: PayloadAction<boolean>) => {
+      state.isClosingForAnimation = action.payload
+    },
   },
 })
 
@@ -69,6 +82,8 @@ export const {
   setSortStatusPack,
   setSortStatusCards,
   resetSort,
+  setModalStatus,
+  isClosingModal,
 } = appSlice.actions
 
 export const appReducer = appSlice.reducer

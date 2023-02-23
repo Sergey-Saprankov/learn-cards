@@ -22,10 +22,10 @@ import { Search } from 'common/components/Search/Search'
 import { SearchPanel } from 'common/components/SearchPanel/SearchPanel'
 import { Sort } from 'common/components/Sort/Sort'
 import { TablePackListWrapper } from 'common/components/Table/TablePackListWrapper/TablePackListWrapper'
-import { Tbody } from 'common/components/Table/Tbody/Tbody'
 import { Thead } from 'common/components/Table/Thead/Thead'
 import { useAppDispatch, useAppSelector } from 'common/hooks'
 import { isLoggedInSelector } from 'features/auth/authSelectors'
+import { TbodyPack } from 'features/packs/PackList/TbodyPack/TbodyPack'
 import { fetchPacksTC, setSearchParams } from 'features/packs/packsSlice'
 
 export const PackList = () => {
@@ -78,7 +78,7 @@ export const PackList = () => {
             <>
               <TablePackListWrapper>
                 <Thead packList={packList} />
-                <Tbody packs={packs} />
+                <TbodyPack packs={packs} />
               </TablePackListWrapper>
               <SuperPagination
                 page={page}

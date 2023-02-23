@@ -8,17 +8,27 @@ type HTMLInputProps = Omit<InputHTMLAttributes<HTMLInputElement>, 'value' | 'onC
 interface SuperInputType extends HTMLInputProps {
   value?: string
   onChange?: (value: string) => void
-  className: string
+  className?: string
+  onChangeChecked?: (checked: boolean) => void
 }
 export const SuperInput: FC<SuperInputType> = memo(
-  ({ className, placeholder, value, onChange, type = 'text', ...other }) => {
+  ({ className, placeholder, value, onChange, type = 'text', onChangeChecked, ...other }) => {
+    className = className ? className : ''
     const onChangeHandler = (e: ChangeEvent<HTMLInputElement>) => {
       onChange?.(e.currentTarget.value)
+      onChangeChecked?.(e.currentTarget.checked)
     }
 
     return (
-      <div className={classNames(s.Input, {}, [className])}>
-        <input value={value} onChange={onChangeHandler} type={type} placeholder={placeholder} />
+      <div>
+        <input
+          className={classNames(s.Input, {}, [className])}
+          value={value}
+          onChange={onChangeHandler}
+          type={type}
+          placeholder={placeholder}
+          {...other}
+        />
       </div>
     )
   }

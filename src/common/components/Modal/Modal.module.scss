@@ -21,12 +21,12 @@
 }
 
 .content {
-  width: 60%;
+  max-width: 380px;
   padding: 20px;
   border-radius: 1em;
   background: #fff;
-  transition: all .4s ease-in-out;
-  transform: scale(0.2);
+  transition: all .3s ease-in-out;
+  transform: scale(0.1);
 }
 
 .opened {
