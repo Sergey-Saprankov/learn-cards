@@ -52,7 +52,7 @@ export const TbodyPack: React.FC<TbodyType> = memo(({ packs }) => {
           }
 
           const editModalHandler = () => {
-            dispatch(setModalStatus('ChangePackForm'))
+            dispatch(setModalStatus('PackForm'))
             setId(t._id)
             setName(t.name)
           }

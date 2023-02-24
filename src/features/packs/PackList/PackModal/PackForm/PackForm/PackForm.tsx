@@ -1,12 +1,11 @@
 import React, { FC, memo, useState } from 'react'
 
-import s from './ChangePackForm.module.scss'
-
 import { isClosingModal } from 'app/appSlice'
 import { Button } from 'common/components/Button/Button'
 import { SelectionFile } from 'common/components/SelectionFile/SelectionFile'
 import { SuperInput } from 'common/components/SuperInput/SuperInput'
 import { useAppDispatch } from 'common/hooks'
+import s from 'features/packs/PackList/PackModal/PackForm/PackForm/PackForm.module.scss'
 import { createPackTC, updatePackTC } from 'features/packs/packsSlice'
 
 type ChangePackFormType = {
@@ -14,7 +13,7 @@ type ChangePackFormType = {
   name?: string
 }
 
-export const ChangePackForm: FC<ChangePackFormType> = memo(({ id, name }) => {
+export const PackForm: FC<ChangePackFormType> = memo(({ id, name }) => {
   const dispatch = useAppDispatch()
 
   const [title, setTitle] = useState(name ? name : '')

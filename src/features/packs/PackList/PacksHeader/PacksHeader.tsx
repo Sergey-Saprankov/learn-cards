@@ -15,7 +15,7 @@ export const PacksHeader: FC<PacksHeaderType> = memo(({ title, buttonTitle }) =>
   const dispatch = useAppDispatch()
 
   const openModalHandler = () => {
-    dispatch(setModalStatus('ChangePackForm'))
+    dispatch(setModalStatus('PackForm'))
   }
 
   return (

@@ -20,6 +20,9 @@
   background-color: rgba(244, 241, 241, 0.44);
   border-radius: 1em;
   cursor: pointer;
+  &:hover {
+    background-color: #ececec;
+  }
 
   .labelText {
     color: #8b8b8b;

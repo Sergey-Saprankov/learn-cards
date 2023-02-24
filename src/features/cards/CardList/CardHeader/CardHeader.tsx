@@ -1,22 +1,23 @@
 import React, { FC, memo } from 'react'
 
+import { useDispatch } from 'react-redux'
 import { useNavigate, useParams } from 'react-router-dom'
 
 import { packNameCardSelector, packUserIdCardSelector } from '../cardSelectors'
 
 import s from './CardHeader.module.scss'
 
+import { setModalStatus } from 'app/appSlice'
 import { Button } from 'common/components/Button/Button'
 import { PackMenu } from 'common/components/PackMenu/PackMenu'
 import { PATH } from 'common/constans/path'
 import { useAppSelector } from 'common/hooks/useAppSelector'
 import { authUserIdSelector } from 'features/auth/authSelectors'
 
-type CardHeaderType = {
-  onClick: () => void
-}
+type CardHeaderType = {}
 
-export const CardHeader: FC<CardHeaderType> = memo(({ onClick }) => {
+export const CardHeader: FC<CardHeaderType> = memo(({}) => {
+  const dispatch = useDispatch()
   const { id } = useParams<{ id: string }>()
   const navigate = useNavigate()
   const userId = useAppSelector(authUserIdSelector)
@@ -26,6 +27,10 @@ export const CardHeader: FC<CardHeaderType> = memo(({ onClick }) => {
   const packByName = pack ? pack.user_name : 'Unknown...'
 
   const isMyCard = userId === packUserId
+
+  const openModalHandler = () => {
+    dispatch(setModalStatus('CardForm'))
+  }
 
   return (
     <div className={s.innerWrapper}>
@@ -38,7 +43,7 @@ export const CardHeader: FC<CardHeaderType> = memo(({ onClick }) => {
         {!isMyCard && <div>{`@${packByName}`}</div>}
       </div>
       {isMyCard ? (
-        <Button onClick={onClick} className={s.btn}>
+        <Button onClick={openModalHandler} className={s.btn}>
           Add new card
         </Button>
       ) : (

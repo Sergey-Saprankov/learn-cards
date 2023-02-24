@@ -2,15 +2,16 @@ import React, { useEffect } from 'react'
 
 import { useNavigate } from 'react-router-dom'
 
+import { getRecoveryEmailSelector } from '../authSelectors'
+import { isMessageSend } from '../authSlice'
+
+import style from './CheckInfoRecovery.module.scss'
+
 import sendMessage from 'assets/sendMessage.png'
 import { Button } from 'common/components/Button/Button'
 import { FormWrapper } from 'common/components/Form/FormWrapper/FormWrapper'
 import { PATH } from 'common/constans/path'
 import { useAppDispatch, useAppSelector } from 'common/hooks'
-import { getRecoveryEmailSelector } from '../authSelectors'
-import { isMessageSend } from '../authSlice'
-
-import style from './CheckInfoRecovery.module.scss'
 
 export const CheckInfoRecovery = () => {
   const navigate = useNavigate()

@@ -46,10 +46,6 @@ export const CardList = () => {
     dispatch(setSearchCardParams({ page, pageCount }))
   }
 
-  const createCards = useCallback(() => {
-    if (!id) return
-  }, [id])
-
   useEffect(
     function () {
       if (!id) return
@@ -68,7 +64,7 @@ export const CardList = () => {
             <img className={s.arrow} src={arrow} alt="arrow backward" />
             <span className={s.backwardText}>Back to Packs List</span>
           </div>
-          <CardHeader onClick={createCards} />
+          <CardHeader />
 
           <SearchPanel>
             <Search initialValue={cardQuestion} onChange={searchByName} />

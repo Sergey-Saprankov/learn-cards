@@ -1,7 +1,7 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 
-export type StatusCardsModal = 'ChangeCardForm' | 'Delete card'
-export type StatusPackModal = 'ChangePackForm' | 'Delete pack'
+export type StatusCardsModal = 'CardForm' | 'Delete card'
+export type StatusPackModal = 'PackForm' | 'Delete pack'
 export type ModalStatus = 'idle' | StatusPackModal | StatusCardsModal
 
 type StatusType = 'idle' | 'loading' | 'failed' | 'success'

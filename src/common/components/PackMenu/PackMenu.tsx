@@ -46,7 +46,7 @@ export const PackMenu: FC<PackMenuType> = ({ title, packId }) => {
 
   const updatePack = () => {
     if (id) {
-      dispatch(setModalStatus('ChangePackForm'))
+      dispatch(setModalStatus('PackForm'))
     }
   }
 

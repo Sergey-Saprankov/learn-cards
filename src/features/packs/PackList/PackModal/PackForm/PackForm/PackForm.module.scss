@@ -35,11 +35,12 @@
 
 .buttonContainer {
   display: flex;
-  gap: 40px;
+  gap: 80px;
 }
 
 .btn {
   padding: 10px 15px;
+  min-width: 80px;
   font-size: 16px;
   border-radius: 30px;
   background-color: #fff;

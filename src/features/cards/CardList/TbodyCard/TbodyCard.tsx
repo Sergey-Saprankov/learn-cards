@@ -1,14 +1,12 @@
 import React, { memo, useEffect, useState } from 'react'
 
+import s from './TbodyCard.module.scss'
+
 import { isClosingForAnimation, modalStatus } from 'app/appSelectors'
 import { setModalStatus } from 'app/appSlice'
-
 import { EmptyPack } from 'common/components/EmptyPack/EmptyPack'
 import { DeleteIcon } from 'common/components/Icon/DeleteIcon/Delete'
 import { EditIcon } from 'common/components/Icon/EditIcon/EditIcon'
-
-import s from './TbodyCard.module.scss'
-
 import { CardsRating } from 'common/components/Rating/Rating'
 import { useAppDispatch, useAppSelector, useDebounce } from 'common/hooks'
 import { dateHandler } from 'common/utils'
@@ -54,7 +52,7 @@ export const TbodyCard: React.FC<TbodyType> = memo(({ card, packName, packId }) 
           const update = dateHandler(t.updated)
 
           const editModalHandler = () => {
-            dispatch(setModalStatus('ChangeCardForm'))
+            dispatch(setModalStatus('CardForm'))
             setId(t._id)
             setQuestion(t.question)
             setAnswer(t.answer)
@@ -103,6 +101,7 @@ export const TbodyCard: React.FC<TbodyType> = memo(({ card, packName, packId }) 
         name={packName}
         question={question}
         cardId={id}
+        answer={answer}
       />
     </>
   )

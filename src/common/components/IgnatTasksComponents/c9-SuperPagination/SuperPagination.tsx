@@ -2,7 +2,7 @@ import React from 'react'
 
 import { Pagination } from '@mui/material'
 
-import { SuperSelect } from '../../Select/SuperSelect'
+import { SuperSelect } from '../../SuperSelect/SuperSelect'
 
 import s from './SuperPagination.module.css'
 

@@ -1,5 +1,4 @@
-import { useAppSelector } from '../common/hooks'
-import { RootStateType } from '../store/store'
+import { RootStateType } from 'store/store'
 
 export const appStatusSelector = (state: RootStateType) => state.app.appStatus
 export const appErrorSelector = (state: RootStateType) => state.app.appError
