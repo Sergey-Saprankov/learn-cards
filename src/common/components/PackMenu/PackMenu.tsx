@@ -40,31 +40,22 @@ export const PackMenu: FC<PackMenuType> = ({ title, packId }) => {
 
   const deletePack = () => {
     if (id) {
-      dispatch(setModalStatus('DeletePack'))
+      dispatch(setModalStatus('Delete pack'))
     }
   }
 
   const updatePack = () => {
-    if (packId) {
-      // dispatch(setModal('updatePack'))
-      // dispatch(setChangedItemId(packId))
-      // dispatch(setChangedItemName(title))
+    if (id) {
+      dispatch(setModalStatus('ChangePackForm'))
     }
   }
 
   const learnHandler = () => {
-    // localStorage.setItem('pageCount', String(searchParams.pageCount))
     dispatch(setSearchCardParams({ page: 1, pageCount: searchParams.cardsTotalCount }))
     if (id) dispatch(fetchCardTC(id))
 
     return navigate(PATH.CARD_LEARN)
   }
-
-  // if (isPackDeleted) {
-  //   dispatch(setIsPackDeleted(false))
-  //
-  //   return <Navigate to={PATH.PACK_LIST} />
-  // }
 
   return (
     <React.Fragment>

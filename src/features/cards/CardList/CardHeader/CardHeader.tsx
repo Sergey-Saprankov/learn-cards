@@ -2,15 +2,15 @@ import React, { FC, memo } from 'react'
 
 import { useNavigate, useParams } from 'react-router-dom'
 
-import { Button } from '../../../../common/components/Button/Button'
-import { PATH } from '../../../../common/constans/path'
-import { authUserIdSelector } from '../../../auth/authSelectors'
 import { packNameCardSelector, packUserIdCardSelector } from '../cardSelectors'
 
 import s from './CardHeader.module.scss'
 
+import { Button } from 'common/components/Button/Button'
 import { PackMenu } from 'common/components/PackMenu/PackMenu'
+import { PATH } from 'common/constans/path'
 import { useAppSelector } from 'common/hooks/useAppSelector'
+import { authUserIdSelector } from 'features/auth/authSelectors'
 
 type CardHeaderType = {
   onClick: () => void

@@ -2,24 +2,22 @@ import React, { memo, useEffect, useState } from 'react'
 
 import { useNavigate } from 'react-router-dom'
 
-import { isClosingForAnimation, modalStatus } from '../../../../app/appSelectors'
-import { setModalStatus } from '../../../../app/appSlice'
-import { useDebounce } from '../../../../common/hooks'
-import { fetchCardTC } from '../../../../features/cards/cardSlice'
-import { setUser } from '../../../auth/authSlice'
-import { PackForm } from '../PackModal/PackForm/PackForm'
-
 import s from './TbodyPack.module.scss'
 
+import { modalStatus, isClosingForAnimation } from 'app/appSelectors'
+import { setModalStatus } from 'app/appSlice'
 import { DeleteIcon } from 'common/components/Icon/DeleteIcon/Delete'
 import { EditIcon } from 'common/components/Icon/EditIcon/EditIcon'
 import { TeachIcon } from 'common/components/Icon/TeachIcon/TeachIcon'
 import { PATH } from 'common/constans/path'
+import { useDebounce } from 'common/hooks'
 import { useAppDispatch } from 'common/hooks/useAppDispatch'
 import { useAppSelector } from 'common/hooks/useAppSelector'
 import { dateHandler } from 'common/utils/dateHandler'
 import { userNameHandler } from 'common/utils/userNameHandler'
 import { authUserIdSelector } from 'features/auth/authSelectors'
+import { fetchCardTC } from 'features/cards/cardSlice'
+import { ModalWrapper } from 'features/MainModal/ModalWrapper'
 import { PackType } from 'features/packs/packsType'
 
 type TbodyType = {
@@ -60,7 +58,7 @@ export const TbodyPack: React.FC<TbodyType> = memo(({ packs }) => {
           }
 
           const deleteModalHandler = () => {
-            dispatch(setModalStatus('DeletePack'))
+            dispatch(setModalStatus('Delete pack'))
             setId(t._id)
             setName(t.name)
           }
@@ -101,7 +99,7 @@ export const TbodyPack: React.FC<TbodyType> = memo(({ packs }) => {
           )
         })}
       </tbody>
-      <PackForm isOpen={isOpen} status={status} id={id} name={name} />
+      <ModalWrapper isOpen={isOpen} status={status} packId={id} name={name} />
     </>
   )
 })

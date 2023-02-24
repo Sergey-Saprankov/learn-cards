@@ -11,9 +11,9 @@ export const EmptyPack = memo(() => {
   return (
     <tbody>
       <tr>
-        <td>
+        <td className={s.td}>
           <img className={s.emptyPack} src={emptyPack} alt="packEmpty" />
-          <div className={s.discription}>
+          <div className={s.description}>
             {cardSearch === '' ? <>Empty pack!</> : <>Change search parameters</>}
           </div>
         </td>

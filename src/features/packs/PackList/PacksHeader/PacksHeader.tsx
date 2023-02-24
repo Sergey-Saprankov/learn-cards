@@ -1,11 +1,8 @@
 import React, { FC, memo, useState } from 'react'
 
-import { modalStatus } from '../../../../app/appSelectors'
 import { setModalStatus } from '../../../../app/appSlice'
 import { Button } from '../../../../common/components/Button/Button'
 import { useAppDispatch, useAppSelector } from '../../../../common/hooks'
-import { RootStateType } from '../../../../store/store'
-import { PackForm } from '../PackModal/PackForm/PackForm'
 
 import s from './PacksHeader.module.scss'
 

@@ -1,13 +1,13 @@
 import React, { FC, memo, useState } from 'react'
 
-import { isClosingModal } from '../../../../../../app/appSlice'
-import { Button } from '../../../../../../common/components/Button/Button'
-import { SelectionFile } from '../../../../../../common/components/SelectionFile/SelectionFile'
-import { SuperInput } from '../../../../../../common/components/SuperInput/SuperInput'
-import { useAppDispatch } from '../../../../../../common/hooks'
-import { createPackTC, updatePackTC } from '../../../../packsSlice'
-
 import s from './ChangePackForm.module.scss'
+
+import { isClosingModal } from 'app/appSlice'
+import { Button } from 'common/components/Button/Button'
+import { SelectionFile } from 'common/components/SelectionFile/SelectionFile'
+import { SuperInput } from 'common/components/SuperInput/SuperInput'
+import { useAppDispatch } from 'common/hooks'
+import { createPackTC, updatePackTC } from 'features/packs/packsSlice'
 
 type ChangePackFormType = {
   id?: string

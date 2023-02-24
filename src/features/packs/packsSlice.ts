@@ -70,6 +70,7 @@ export const createPackTC = createAsyncThunk(
       const res = await packsAPI.createPack(data)
 
       dispatch(fetchPacksTC())
+      dispatch(setAppStatus('success'))
     } catch (e: any) {
       errorUtils(e, dispatch)
     }
@@ -84,6 +85,7 @@ export const deletePackTC = createAsyncThunk('deletePack', async (id: string, { 
     if (!document.location.hash.includes('cards')) {
       dispatch(fetchPacksTC())
     }
+    dispatch(setAppStatus('success'))
   } catch (e: any) {
     errorUtils(e, dispatch)
   }
@@ -98,6 +100,7 @@ export const updatePackTC = createAsyncThunk(
       const res = await packsAPI.updatePack(data)
 
       dispatch(fetchPacksTC())
+      dispatch(setAppStatus('success'))
     } catch (e: any) {
       errorUtils(e, dispatch)
     }

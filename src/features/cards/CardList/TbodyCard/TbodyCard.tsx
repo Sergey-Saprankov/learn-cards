@@ -3,10 +3,12 @@ import React, { memo, useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 
 import { isClosingForAnimation, modalStatus } from '../../../../app/appSelectors'
+import { setModalStatus } from '../../../../app/appSlice'
 import Delete from '../../../../assets/Delete.svg'
 import edit from '../../../../assets/Edit.svg'
 import { EmptyPack } from '../../../../common/components/EmptyPack/EmptyPack'
-import { PackForm } from '../../../packs/PackList/PackModal/PackForm/PackForm'
+import { DeleteIcon } from '../../../../common/components/Icon/DeleteIcon/Delete'
+import { EditIcon } from '../../../../common/components/Icon/EditIcon/EditIcon'
 
 import s from './TbodyCard.module.scss'
 
@@ -14,11 +16,15 @@ import { CardsRating } from 'common/components/Rating/Rating'
 import { useAppDispatch, useAppSelector, useDebounce } from 'common/hooks'
 import { dateHandler } from 'common/utils'
 import { CardType } from 'features/cards/cardType'
+import { ModalWrapper } from 'features/MainModal/ModalWrapper'
+
 type TbodyType = {
   card?: CardType[]
+  packName?: string
+  packId?: string
 }
 
-export const TbodyCard: React.FC<TbodyType> = memo(({ card }) => {
+export const TbodyCard: React.FC<TbodyType> = memo(({ card, packName, packId }) => {
   const userId = useAppSelector(state => state.auth.user._id)
   const packUserId = useAppSelector(state => state.card.searchParams.packUserId)
 
@@ -29,32 +35,16 @@ export const TbodyCard: React.FC<TbodyType> = memo(({ card }) => {
   const debounce = useDebounce(isClosing, 200)
 
   const [id, setId] = useState('')
-  const [name, setName] = useState('')
+  const [question, setQuestion] = useState('')
+  const [answer, setAnswer] = useState('')
 
   useEffect(() => {
     setId('')
-    setName('')
+    setQuestion('')
+    setAnswer('')
   }, [debounce])
 
   let isMyCard = userId === packUserId
-
-  const onClickDeleteHandler = (cardID: string, cardsPackID: string, cardName: string) => {
-    // dispatch(setModal('deleteCard'))
-    // dispatch(setChangedItemName(cardName))
-    // dispatch(setChangedItemId(cardID))
-  }
-  const onClickUpdateHandler = (
-    cardID: string,
-    cardsPackID: string,
-    cardQuestion: string,
-    cardAnswer: string
-  ) => {
-    // dispatch(setModal('updateCard'))
-    // dispatch(setChangedItemId(cardID))
-    // dispatch(setChangedItemName(cardQuestion))
-    // dispatch(setChangedItemAnswer(cardAnswer))
-    // dispatch(setChangedItemCardsId(cardsPackID))
-  }
 
   useEffect(() => {
     console.log(userId === packUserId)
@@ -65,6 +55,19 @@ export const TbodyCard: React.FC<TbodyType> = memo(({ card }) => {
       <tbody>
         {card?.map(t => {
           const update = dateHandler(t.updated)
+
+          const editModalHandler = () => {
+            dispatch(setModalStatus('ChangeCardForm'))
+            setId(t._id)
+            setQuestion(t.question)
+            setAnswer(t.answer)
+          }
+
+          const deleteModalHandler = () => {
+            dispatch(setModalStatus('Delete card'))
+            setId(t._id)
+            setQuestion(t.question)
+          }
 
           return isMyCard ? (
             <tr key={t._id} className={s.tr}>
@@ -77,20 +80,8 @@ export const TbodyCard: React.FC<TbodyType> = memo(({ card }) => {
                     <CardsRating value={t.grade} />
                   </div>
                   <div className={s.iconContainer}>
-                    <img
-                      className={s.icon}
-                      onClick={() =>
-                        onClickUpdateHandler(t._id, t.cardsPack_id, t.question, t.answer)
-                      }
-                      src={edit}
-                      alt="edit"
-                    />
-                    <img
-                      className={s.icon}
-                      onClick={() => onClickDeleteHandler(t._id, t.cardsPack_id, t.question)}
-                      src={Delete}
-                      alt="delete"
-                    />
+                    <EditIcon onClick={editModalHandler} />
+                    <DeleteIcon onClick={deleteModalHandler} />
                   </div>
                 </div>
               </td>
@@ -108,7 +99,14 @@ export const TbodyCard: React.FC<TbodyType> = memo(({ card }) => {
         })}
       </tbody>
       {card?.length === 0 && <EmptyPack />}
-      <PackForm isOpen={isOpen} status={status} id={id} name={name} />
+      <ModalWrapper
+        isOpen={isOpen}
+        status={status}
+        packId={packId}
+        name={packName}
+        question={question}
+        cardId={id}
+      />
     </>
   )
 })

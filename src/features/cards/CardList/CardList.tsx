@@ -18,7 +18,6 @@ import {
 } from './cardSelectors'
 
 import arrow from 'assets/arrow.svg'
-import { EmptyPack } from 'common/components/EmptyPack/EmptyPack'
 import SuperPagination from 'common/components/IgnatTasksComponents/c9-SuperPagination/SuperPagination'
 import { Search } from 'common/components/Search/Search'
 import { SearchPanel } from 'common/components/SearchPanel/SearchPanel'
@@ -38,7 +37,6 @@ export const CardList = () => {
   const pagesTotalCount = useAppSelector(pagesTotalCountCardSelector)
   const cardQuestion = useAppSelector(cardQuestionCardSelector)
   const sortCards = useAppSelector(sortCardsSelector)
-  const cardsTotalCount = useAppSelector(cardsTotalCountSelector)
   const packActive = useAppSelector(state => state.packs.cardPacks.find(p => p._id === id))
   const namePackActive = packActive?.name
 
@@ -51,9 +49,6 @@ export const CardList = () => {
 
   const createCards = useCallback(() => {
     if (!id) return
-
-    // dispatch(setModal('createCard'))
-    // dispatch(setChangedItemId(id))
   }, [id])
 
   useEffect(
@@ -81,8 +76,8 @@ export const CardList = () => {
           </SearchPanel>
           <>
             <TablePackListWrapper>
-              {!!cardsTotalCount && <Thead cardList={cardsList} />}
-              <TbodyCard card={card} />
+              {card.length !== 0 && <Thead cardList={cardsList} />}
+              <TbodyCard card={card} packName={namePackActive} packId={id} />
             </TablePackListWrapper>
             <SuperPagination
               page={page}
