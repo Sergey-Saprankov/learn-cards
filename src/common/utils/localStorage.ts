@@ -1,4 +1,4 @@
-import { RootStateType } from '../../store/store'
+import { RootStateType } from 'store/store'
 
 const KEY = 'packs/cards'
 
@@ -15,9 +15,9 @@ export function loadState() {
 }
 
 export async function saveState(state: RootStateType) {
-  let card = state.card
-  let packs = state.packs
-  let lsData = { card, packs }
+  const card = state.card
+  const packs = state.packs
+  const lsData = { card, packs }
 
   try {
     const serializedState = JSON.stringify(lsData)

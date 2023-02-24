@@ -18,7 +18,7 @@ export const Search: FC<SearchPropsType> = memo(({ initialValue, onChange }) => 
 
   const [value, setValue] = useState<string>(initialValue)
 
-  let debouncedValue = useDebounce<string>(value, 500)
+  const debouncedValue = useDebounce<string>(value, 500)
 
   const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
     setValue(event.target.value)
@@ -29,7 +29,7 @@ export const Search: FC<SearchPropsType> = memo(({ initialValue, onChange }) => 
 
   useEffect(() => {
     onChange(value)
-  }, [debouncedValue])
+  }, [debouncedValue, onChange, value])
 
   return (
     <div className={s.container}>

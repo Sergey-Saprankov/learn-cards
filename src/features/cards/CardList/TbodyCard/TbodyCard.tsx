@@ -1,14 +1,11 @@
 import React, { memo, useEffect, useState } from 'react'
 
-import { useNavigate } from 'react-router-dom'
+import { isClosingForAnimation, modalStatus } from 'app/appSelectors'
+import { setModalStatus } from 'app/appSlice'
 
-import { isClosingForAnimation, modalStatus } from '../../../../app/appSelectors'
-import { setModalStatus } from '../../../../app/appSlice'
-import Delete from '../../../../assets/Delete.svg'
-import edit from '../../../../assets/Edit.svg'
-import { EmptyPack } from '../../../../common/components/EmptyPack/EmptyPack'
-import { DeleteIcon } from '../../../../common/components/Icon/DeleteIcon/Delete'
-import { EditIcon } from '../../../../common/components/Icon/EditIcon/EditIcon'
+import { EmptyPack } from 'common/components/EmptyPack/EmptyPack'
+import { DeleteIcon } from 'common/components/Icon/DeleteIcon/Delete'
+import { EditIcon } from 'common/components/Icon/EditIcon/EditIcon'
 
 import s from './TbodyCard.module.scss'
 
@@ -44,11 +41,11 @@ export const TbodyCard: React.FC<TbodyType> = memo(({ card, packName, packId }) 
     setAnswer('')
   }, [debounce])
 
-  let isMyCard = userId === packUserId
+  const isMyCard = userId === packUserId
 
   useEffect(() => {
     console.log(userId === packUserId)
-  }, [packUserId])
+  }, [packUserId, dispatch, userId])
 
   return (
     <>

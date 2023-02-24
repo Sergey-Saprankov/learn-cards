@@ -5,8 +5,8 @@ export const userNameHandler = (userName: string) => {
   return name.length <= max
     ? name
     : name
-        .split('')
-        .map((el, i) => (i <= max ? el : null))
-        .filter(el => el)
-        .join('') + '...'
+      .split('')
+      .map((el, i) => (i <= max ? el : null))
+      .filter(el => el)
+      .join('') + '...'
 }

@@ -1,7 +1,5 @@
 import React, { FC, memo, useRef, useState } from 'react'
 
-import Rating from '@mui/material/Rating'
-
 import { useAppSelector } from '../../hooks'
 
 import { Star } from './Star/Star'
@@ -15,7 +13,7 @@ export const Stars = memo(() => {
   return (
     <>
       {gradesCardLearn.map((g, i) => {
-        let index = i + 1
+        const index = i + 1
 
         return (
           <div onClick={() => setActive(index)} key={g.id} className={s.starBlock}>

@@ -21,10 +21,10 @@ export const SuperSelect: FC<SuperSelectPropsType> = memo(
   ({ options, className, onChange, onChangeOption, value, ...restProps }) => {
     const mappedOptions: any[] = options
       ? options.map(o => (
-          <MenuItem key={o.id} value={o.id}>
-            {o.value}
-          </MenuItem>
-        ))
+        <MenuItem key={o.id} value={o.id}>
+          {o.value}
+        </MenuItem>
+      ))
       : []
 
     const onChangeCallback = (e: SelectChangeEvent) => {

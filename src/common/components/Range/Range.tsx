@@ -9,8 +9,6 @@ import s from './Range.module.scss'
 import { useAppDispatch, useAppSelector } from 'common/hooks'
 import { setSearchParams } from 'features/packs/packsSlice'
 
-type RangeType = {}
-
 export const Range = () => {
   const dispatch = useAppDispatch()
   const params = useAppSelector(packsAllSearchParametersSelector)
@@ -45,7 +43,7 @@ export const Range = () => {
 
   const changeMaxValueOnPressEnter = (e: KeyboardEvent<HTMLInputElement>) => {
     if (e.key === 'Enter') {
-      let newValue: number | number[] = Number(e.currentTarget.value)
+      const newValue: number | number[] = Number(e.currentTarget.value)
 
       setValue([value[0], newValue])
       dispatch(setSearchParams({ ...params, max: newValue }))

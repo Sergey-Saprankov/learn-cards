@@ -23,7 +23,7 @@ type PackMenuType = {
 }
 
 export const PackMenu: FC<PackMenuType> = ({ title, packId }) => {
-  let { id } = useParams<{ id: string }>()
+  const { id } = useParams<{ id: string }>()
 
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null)
   const cards = useAppSelector(state => state.card.cards)

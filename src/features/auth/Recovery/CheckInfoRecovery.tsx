@@ -2,12 +2,11 @@ import React, { useEffect } from 'react'
 
 import { useNavigate } from 'react-router-dom'
 
-import sendMessage from '../../../assets/sendMessage.png'
-import { Button } from '../../../common/components/Button/Button'
-import { FormWrapper } from '../../../common/components/Form/FormWrapper/FormWrapper'
-import s from '../../../common/components/Header/HeaderSignIn/HeaderSignIn.module.scss'
-import { PATH } from '../../../common/constans/path'
-import { useAppDispatch, useAppSelector } from '../../../common/hooks'
+import sendMessage from 'assets/sendMessage.png'
+import { Button } from 'common/components/Button/Button'
+import { FormWrapper } from 'common/components/Form/FormWrapper/FormWrapper'
+import { PATH } from 'common/constans/path'
+import { useAppDispatch, useAppSelector } from 'common/hooks'
 import { getRecoveryEmailSelector } from '../authSelectors'
 import { isMessageSend } from '../authSlice'
 
@@ -20,7 +19,7 @@ export const CheckInfoRecovery = () => {
 
   useEffect(() => {
     dispatch(isMessageSend(false))
-  }, [])
+  }, [dispatch])
 
   const email = useAppSelector(getRecoveryEmailSelector)
 

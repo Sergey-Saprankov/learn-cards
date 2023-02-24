@@ -1,8 +1,8 @@
 import { AxiosResponse } from 'axios'
 import { FieldValues } from 'react-hook-form'
 
-import { instance, instanceRec } from '../../common/constans/instance'
-import { createMessage } from '../../common/utils/messageCreator'
+import { instance, instanceRec } from 'common/constans/instance'
+import { createMessage } from 'common/utils/messageCreator'
 
 export type UserResponseType = {
   _id: string
@@ -41,7 +41,7 @@ export type BlockUserType = {
 
 export const authApi = {
   authMe: () => {
-    return instance.post<'', AxiosResponse<UserResponseType>, {}>(`auth/me`)
+    return instance.post<'', AxiosResponse<UserResponseType>>(`auth/me`)
   },
   update: (data: UpdateUserType) =>
     instance.put<'', AxiosResponse<{ updatedUser: UserResponseType }>, UpdateUserType>(
@@ -51,7 +51,7 @@ export const authApi = {
   loggedIn: (data: FieldValues) => {
     return instance.post<'', AxiosResponse<UserResponseType>, FieldValues>(`auth/login`, data)
   },
-  logout: () => instance.delete<'', AxiosResponse<{ info: string }>, {}>(`auth/me`),
+  logout: () => instance.delete<'', AxiosResponse<{ info: string }>>(`auth/me`),
   register: (data: RegistrationRequestType) =>
     instance.post<AxiosResponse<UserResponseType>>(`auth/register`, data),
   recoveryPassword: (email: string) => {

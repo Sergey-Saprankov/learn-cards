@@ -2,9 +2,9 @@ import React, { memo, useCallback, useEffect, useState } from 'react'
 
 import { useNavigate, useParams } from 'react-router-dom'
 
-import arrow from '../../../assets/arrow.svg'
-import { useAppDispatch, useAppSelector } from '../../../common/hooks'
-import { getCard } from '../../../common/utils/getCard'
+import arrow from 'assets/arrow.svg'
+import { useAppDispatch, useAppSelector } from 'common/hooks'
+import { getCard } from 'common/utils/getCard'
 import { cardSelector, packNameCardSelector } from '../CardList/cardSelectors'
 import { fetchCardTC, setSearchCardParams, updatedGradeTC } from '../cardSlice'
 import { CardType } from '../cardType'
@@ -17,7 +17,7 @@ export const LearnCardPage = memo(() => {
   const [isChecked, setIsChecked] = useState<boolean>(false)
   const [grade, setGrade] = useState<number>(0)
   const [first, setFirst] = useState<boolean>(false)
-  let { id } = useParams<{ id: string }>()
+  const { id } = useParams<{ id: string }>()
 
   const packName = useAppSelector(packNameCardSelector)
   const cards = useAppSelector(cardSelector)
@@ -37,14 +37,13 @@ export const LearnCardPage = memo(() => {
 
     if (cards.length > 0) setCard(getCard(cards))
 
-    return () => {}
-  }, [id, cards, first, grade])
+  }, [id, cards, first, grade, dispatch])
 
   const onChangeChecked = useCallback((isActive: AnswerStatuses, grade: number) => {
     setGrade(grade)
     dispatch(resetStatus())
     dispatch(changeStatus({ id: grade, status: isActive }))
-  }, [])
+  }, [dispatch])
 
   const onNext = useCallback(() => {
     dispatch(updatedGradeTC({ grade: grade, card_id: card._id }))
@@ -53,7 +52,7 @@ export const LearnCardPage = memo(() => {
     if (cards.length > 0) {
       setCard(getCard(cards))
     }
-  }, [grade, card._id, cards])
+  }, [grade, card._id, cards, dispatch])
 
   const onShowAnswer = useCallback(() => {
     setIsChecked(true)

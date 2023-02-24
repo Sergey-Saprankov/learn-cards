@@ -20,12 +20,12 @@ type ModalType = {
 export const Modal: FC<ModalType> = memo(({ children, onClose, isOpen, className }) => {
   const dispatch = useAppDispatch()
   const isClosing = useAppSelector(isClosingForAnimation)
-  let debouncedValue = useDebounce<boolean>(isClosing, 350)
+  const debouncedValue = useDebounce<boolean>(isClosing, 350)
 
   useEffect(() => {
     dispatch(setModalStatus('idle'))
     dispatch(isClosingModal(false))
-  }, [debouncedValue])
+  }, [debouncedValue, dispatch])
 
   className = className ? className : ''
 

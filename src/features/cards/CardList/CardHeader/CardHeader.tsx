@@ -17,15 +17,15 @@ type CardHeaderType = {
 }
 
 export const CardHeader: FC<CardHeaderType> = memo(({ onClick }) => {
-  let { id } = useParams<{ id: string }>()
+  const { id } = useParams<{ id: string }>()
   const navigate = useNavigate()
   const userId = useAppSelector(authUserIdSelector)
   const packUserId = useAppSelector(packUserIdCardSelector)
   const packName = useAppSelector(packNameCardSelector)
   const pack = useAppSelector(state => state.packs.cardPacks.find(p => p._id === id))
-  let packByName = pack ? pack.user_name : 'Unknown...'
+  const packByName = pack ? pack.user_name : 'Unknown...'
 
-  let isMyCard = userId === packUserId
+  const isMyCard = userId === packUserId
 
   return (
     <div className={s.innerWrapper}>

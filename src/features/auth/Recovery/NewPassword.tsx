@@ -17,7 +17,7 @@ import { useAppDispatch, useAppSelector } from 'common/hooks'
 import { formHandler } from 'common/utils'
 
 export const NewPassword = () => {
-  let { resetPasswordToken } = useParams()
+  const { resetPasswordToken } = useParams()
   const isPasswordChanged = useAppSelector(isPasswordChangedSelector)
   const dispatch = useAppDispatch()
   const { errorPassword, errorConfirmPwd, handleSubmit, isValid, register } = formHandler(

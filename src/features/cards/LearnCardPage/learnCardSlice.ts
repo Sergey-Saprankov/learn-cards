@@ -7,7 +7,7 @@ export enum AnswerStatuses {
   IsActive = 1,
 }
 
-let initialState: InititalStateLearnCardType[] = [
+const initialState: InititalStateLearnCardType[] = [
   { id: 1, title: 'Did not know', status: AnswerStatuses.IsNoActive },
   { id: 2, title: 'Forgot', status: AnswerStatuses.IsNoActive },
   { id: 3, title: 'A lot of thought', status: AnswerStatuses.IsNoActive },

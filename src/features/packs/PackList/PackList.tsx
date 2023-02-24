@@ -48,10 +48,6 @@ export const PackList = () => {
     dispatch(setSearchParams({ page, pageCount }))
   }
 
-  const createPack = () => {
-    // dispatch(setModal('createPack'))
-  }
-
   const searchByName = (value: string) => {
     dispatch(setSearchParams({ packName: value }))
   }
@@ -61,13 +57,13 @@ export const PackList = () => {
       return
     }
     dispatch(fetchPacksTC())
-  }, [page, pageCount, min, max, sortPack, user_id, packName])
+  }, [page, pageCount, min, max, sortPack, user_id, packName, dispatch, isLoggedIn])
 
   return (
     <div className={s.container}>
       <div className={s.wrapper}>
         <div className={s.innerWrapper}>
-          <PacksHeader title={'Packs list'} buttonTitle={'Add new pack'} onClick={createPack} />
+          <PacksHeader title={'Packs list'} buttonTitle={'Add new pack'} />
           <SearchPanel>
             <Search initialValue={packName} onChange={searchByName} />
             <Sort />

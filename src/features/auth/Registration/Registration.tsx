@@ -23,7 +23,7 @@ export const Registration = () => {
 
   useEffect(() => {
     dispatch(isRegistred(false))
-  }, [])
+  }, [dispatch])
 
   const { errorEmail, errorPassword, errorConfirmPwd, handleSubmit, isValid, register } =
     formHandler('email', 'password', 'confirmPwd')

@@ -30,6 +30,7 @@ export const formHandler = (...keys: string[]) => {
     formState: { errors, isValid },
     handleSubmit,
     reset,
+    // eslint-disable-next-line react-hooks/rules-of-hooks
   } = useForm({ resolver: yupResolver(formSchema), mode: 'onTouched' })
 
   const errorEmail = errors.email ? String(errors.email.message) : undefined

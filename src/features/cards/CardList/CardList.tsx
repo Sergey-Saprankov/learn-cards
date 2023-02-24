@@ -10,7 +10,6 @@ import {
   cardQuestionCardSelector,
   cardSelector,
   cardsListSelector,
-  cardsTotalCountSelector,
   pageCardSelector,
   pageCountCardSelector,
   pagesTotalCountCardSelector,
@@ -28,7 +27,7 @@ import { TbodyCard } from 'features/cards/CardList/TbodyCard/TbodyCard'
 
 export const CardList = () => {
   const dispatch = useAppDispatch()
-  let { id } = useParams<{ id: string }>()
+  const { id } = useParams<{ id: string }>()
   const navigate = useNavigate()
   const cardsList = useAppSelector(cardsListSelector)
   const card = useAppSelector(cardSelector)
@@ -58,7 +57,7 @@ export const CardList = () => {
 
       dispatch(fetchCardTC(id))
     },
-    [id, cardQuestion, sortCards, page, pageCount, namePackActive]
+    [id, cardQuestion, sortCards, page, pageCount, namePackActive, dispatch]
   )
 
   return (

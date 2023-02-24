@@ -19,7 +19,7 @@ function App() {
 
   useEffect(() => {
     dispatch(authMeTC())
-  }, [])
+  }, [dispatch])
 
   if (!isInitialized) {
     return <Loader />

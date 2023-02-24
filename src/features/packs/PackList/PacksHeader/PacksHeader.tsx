@@ -9,10 +9,9 @@ import s from './PacksHeader.module.scss'
 type PacksHeaderType = {
   title: string
   buttonTitle: string
-  onClick: () => void
 }
 
-export const PacksHeader: FC<PacksHeaderType> = memo(({ title, buttonTitle, onClick }) => {
+export const PacksHeader: FC<PacksHeaderType> = memo(({ title, buttonTitle }) => {
   const dispatch = useAppDispatch()
 
   const openModalHandler = () => {
