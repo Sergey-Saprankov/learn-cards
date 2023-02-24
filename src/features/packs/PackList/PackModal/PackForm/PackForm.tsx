@@ -1,10 +1,11 @@
 import React, { FC, memo, ReactNode } from 'react'
 
-import { ModalStatus } from '../../../../../app/appSlice'
-import { Modal } from '../../../../../common/components/Modal/Modal'
-
 import { ChangePackForm } from './ChangePackForm/ChangePackForm'
 import { DeletePack } from './DeletePack/DeletePack'
+
+import { ModalStatus } from 'app/appSlice'
+import { DeleteFormTemplate } from 'common/components/Modal/DeleteFormTemplate/DeleteFormTemplate'
+import { Modal } from 'common/components/Modal/Modal'
 
 type PackFormType = {
   className?: string
@@ -15,9 +16,11 @@ type PackFormType = {
 }
 
 export const PackForm: FC<PackFormType> = memo(({ className, isOpen, status, id, name }) => {
-  const updatePack = status === 'ChangePackForm' && <ChangePackForm id={id} name={name} />
-  const deletePack = status === 'DeletePack' && <DeletePack />
-  const form = updatePack || deletePack || ''
+  const changePack = status === 'ChangePackForm' && <ChangePackForm id={id} name={name} />
+  const deletePack = status === 'DeletePack' && (
+    <DeleteFormTemplate _id={id} name={name} title={'Delete pack'} />
+  )
+  const form = changePack || deletePack || ''
 
   return (
     <Modal isOpen={isOpen} className={className}>

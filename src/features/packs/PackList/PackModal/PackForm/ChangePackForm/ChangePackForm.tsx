@@ -62,11 +62,11 @@ export const ChangePackForm: FC<ChangePackFormType> = memo(({ id, name }) => {
         </label>
       </div>
       <div className={s.buttonContainer}>
-        <Button onClick={onChangePackHandler} className={s.btn}>
-          Save
-        </Button>
-        <Button onClick={closeModalHandler} className={`${s.btn} ${s.primary}`}>
+        <Button onClick={closeModalHandler} className={s.btn}>
           Cancel
+        </Button>
+        <Button onClick={onChangePackHandler} className={`${s.btn} ${s.primary}`}>
+          Save
         </Button>
       </div>
     </div>

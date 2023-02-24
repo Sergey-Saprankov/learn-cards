@@ -5,6 +5,8 @@ import Menu from '@mui/material/Menu'
 import MenuItem from '@mui/material/MenuItem'
 import { Navigate, useNavigate, useParams } from 'react-router-dom'
 
+import { setModalStatus } from '../../../app/appSlice'
+
 import s from './PackMenu.module.scss'
 
 import Delete from 'assets/Delete.svg'
@@ -21,16 +23,11 @@ type PackMenuType = {
 }
 
 export const PackMenu: FC<PackMenuType> = ({ title, packId }) => {
-  console.log(packId)
   let { id } = useParams<{ id: string }>()
 
-  console.log(id)
-
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null)
-  // const modalType = useAppSelector(modalTypeSelector)
   const cards = useAppSelector(state => state.card.cards)
   const searchParams = useAppSelector(state => state.card.searchParams)
-  // const isPackDeleted = useAppSelector(isPackDeletedSelector)
   const open = Boolean(anchorEl)
   const dispatch = useAppDispatch()
   const navigate = useNavigate()
@@ -42,10 +39,8 @@ export const PackMenu: FC<PackMenuType> = ({ title, packId }) => {
   }
 
   const deletePack = () => {
-    if (packId) {
-      // dispatch(setModal('deletePack'))
-      // dispatch(setChangedItemId(packId))
-      // dispatch(setChangedItemName(title))
+    if (id) {
+      dispatch(setModalStatus('DeletePack'))
     }
   }
 

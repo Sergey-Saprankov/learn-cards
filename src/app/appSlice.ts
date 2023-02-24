@@ -1,10 +1,10 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 
-export type StatusCardsModal = 'Add new card' | 'Edit card' | 'Delete card'
+export type StatusCardsModal = 'ChangeCardForm' | 'DeleteCard'
 export type StatusPackModal = 'ChangePackForm' | 'DeletePack'
-type StatusType = 'idle' | 'loading' | 'failed' | 'success'
 export type ModalStatus = 'idle' | StatusPackModal | StatusCardsModal
 
+type StatusType = 'idle' | 'loading' | 'failed' | 'success'
 const packList = [
   { title: 'Name', status: 0, sortName: 'name' },
   { title: 'Cards', status: 0, sortName: 'cardsCount' },

@@ -36,7 +36,9 @@ export const LearnCardItem = memo(
                 <div className={s.answerItem}>
                   {isChecked && <div className={s.answer}>{card.answer}</div>}
                   {!isChecked && (
-                    <Button name={'Show answer'} onClick={onShowAnswer} isValid={true} />
+                    <Button onClick={onShowAnswer} className={`${s.btn} ${s.color}`}>
+                      Show answer
+                    </Button>
                   )}
                 </div>
               </div>
@@ -48,7 +50,9 @@ export const LearnCardItem = memo(
               {isChecked && (
                 <>
                   <GradesItem onChangeChecked={onChangeChecked} />
-                  <Button name={'Next'} onClick={onNext} isValid={true} />
+                  <Button onClick={onNext} className={`${s.btn} ${s.color}`}>
+                    Next
+                  </Button>
                 </>
               )}
             </div>

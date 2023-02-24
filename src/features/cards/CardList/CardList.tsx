@@ -23,9 +23,9 @@ import SuperPagination from 'common/components/IgnatTasksComponents/c9-SuperPagi
 import { Search } from 'common/components/Search/Search'
 import { SearchPanel } from 'common/components/SearchPanel/SearchPanel'
 import { TablePackListWrapper } from 'common/components/Table/TablePackListWrapper/TablePackListWrapper'
-import { TbodyCard } from 'common/components/Table/TbodyCard/TbodyCard'
 import { Thead } from 'common/components/Table/Thead/Thead'
 import { useAppDispatch, useAppSelector } from 'common/hooks'
+import { TbodyCard } from 'features/cards/CardList/TbodyCard/TbodyCard'
 
 export const CardList = () => {
   const dispatch = useAppDispatch()
@@ -79,22 +79,18 @@ export const CardList = () => {
           <SearchPanel>
             <Search initialValue={cardQuestion} onChange={searchByName} />
           </SearchPanel>
-          {cardsTotalCount === 0 ? (
-            <EmptyPack />
-          ) : (
-            <>
-              <TablePackListWrapper>
-                <Thead cardList={cardsList} />
-                <TbodyCard card={card} />
-              </TablePackListWrapper>
-              <SuperPagination
-                page={page}
-                totalCount={pagesTotalCount}
-                itemsCountForPage={pageCount}
-                onChange={onChange}
-              />
-            </>
-          )}
+          <>
+            <TablePackListWrapper>
+              {!!cardsTotalCount && <Thead cardList={cardsList} />}
+              <TbodyCard card={card} />
+            </TablePackListWrapper>
+            <SuperPagination
+              page={page}
+              totalCount={pagesTotalCount}
+              itemsCountForPage={pageCount}
+              onChange={onChange}
+            />
+          </>
         </div>
       </div>
     </div>
