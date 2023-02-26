@@ -11,12 +11,15 @@ import s from './AccountMenu.module.scss'
 import ava from 'assets/ava.png'
 import { PATH } from 'common/constans/path'
 import { useAppDispatch, useAppSelector } from 'common/hooks'
-import { authUserIdSelector } from 'features/auth/authSelectors'
+import { userNameHandler } from 'common/utils'
+import { authUserIdSelector, authUserInfoSelector } from 'features/auth/authSelectors'
 import { logoutTC } from 'features/auth/authSlice'
 import { setSearchParams } from 'features/packs/packsSlice'
 
 export function AccountMenu() {
   const dispatch = useAppDispatch()
+  const user = useAppSelector(authUserInfoSelector)
+  let userAvatar = user.avatar
   const user_id = useAppSelector(authUserIdSelector)
   const logoutHandler = () => {
     dispatch(logoutTC())
@@ -46,7 +49,7 @@ export function AccountMenu() {
             aria-expanded={open ? 'true' : undefined}
           >
             <div className={s.avatar}>
-              <Avatar src={ava} sx={{ width: 36, height: 36 }}>
+              <Avatar src={userAvatar} sx={{ width: 36, height: 36 }}>
                 M
               </Avatar>
             </div>

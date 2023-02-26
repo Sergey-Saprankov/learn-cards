@@ -8,7 +8,7 @@ import pen from 'assets/pen.svg'
 import submit from 'assets/submit.svg'
 import { useAppDispatch } from 'common/hooks'
 import { formHandler } from 'common/utils'
-import { updateNameTC } from 'features/auth/authSlice'
+import { updateUserTC } from 'features/auth/authSlice'
 
 type EditableSpanType = {
   value: string
@@ -25,7 +25,7 @@ const EditableSpan: React.FC<EditableSpanType> = ({ value }) => {
   }
   const { errorName, register, reset, isValid, handleSubmit } = formHandler('name')
   const onSubmit = (data: FieldValues) => {
-    dispatch(updateNameTC(data.name))
+    dispatch(updateUserTC(data.name))
     setEditMode(false)
   }
 

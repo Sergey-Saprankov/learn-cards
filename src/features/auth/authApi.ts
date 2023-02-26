@@ -6,6 +6,7 @@ import { createMessage } from 'common/utils/messageCreator'
 
 export type UserResponseType = {
   _id: string
+  avatar: string
   email: string
   rememberMe: boolean
   isAdmin: boolean
@@ -31,7 +32,7 @@ export type SetNewPasswordType = {
 
 export type UpdateUserType = {
   name: string
-  avatar?: string
+  avatar: string
 }
 
 export type BlockUserType = {

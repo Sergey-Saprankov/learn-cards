@@ -6,6 +6,7 @@ import s from './TbodyPack.module.scss'
 
 import { modalStatus, isClosingForAnimation } from 'app/appSelectors'
 import { setModalStatus } from 'app/appSlice'
+import defaultAva from 'assets/notFound.jpg'
 import { DeleteIcon } from 'common/components/Icon/DeleteIcon/Delete'
 import { EditIcon } from 'common/components/Icon/EditIcon/EditIcon'
 import { TeachIcon } from 'common/components/Icon/TeachIcon/TeachIcon'
@@ -32,13 +33,16 @@ export const TbodyPack: React.FC<TbodyType> = memo(({ packs }) => {
   const status = useAppSelector(modalStatus)
   const isOpen = status !== 'idle'
   const debounce = useDebounce(isClosing, 200)
+  const [errorImg, setErrorImg] = useState(false)
 
   const [id, setId] = useState('')
   const [name, setName] = useState('')
+  const [deckCover, setDeckCover] = useState('')
 
   useEffect(() => {
     setId('')
     setName('')
+    setDeckCover('')
   }, [debounce])
 
   return (
@@ -47,14 +51,21 @@ export const TbodyPack: React.FC<TbodyType> = memo(({ packs }) => {
         {packs?.map(t => {
           const dateUpdate = dateHandler(t.updated)
           const userName = userNameHandler(t.user_name)
+          const title = userNameHandler(t.name)
+          const img = errorImg ? defaultAva : t.deckCover
           const getCardsPack = () => {
             return navigate(`${PATH.CARD_LIST}/${t._id}`)
+          }
+
+          const errorHandler = () => {
+            setErrorImg(true)
           }
 
           const editModalHandler = () => {
             dispatch(setModalStatus('PackForm'))
             setId(t._id)
             setName(t.name)
+            setDeckCover(t.deckCover)
           }
 
           const deleteModalHandler = () => {
@@ -77,7 +88,17 @@ export const TbodyPack: React.FC<TbodyType> = memo(({ packs }) => {
           return (
             <tr key={t._id} className={s.tr}>
               <td onClick={getCardsPack} className={`${s.td} ${s.packTitle}`}>
-                <span className={s.title}>{t.name}</span>
+                <div className={s.coverContainer}>
+                  <div className={s.avaContainer}>
+                    <img
+                      className={s.bg}
+                      src={t.deckCover ? t.deckCover : defaultAva}
+                      alt={'cover'}
+                      onError={errorHandler}
+                    />
+                  </div>
+                  <span className={s.title}>{title}</span>
+                </div>
               </td>
               <td className={s.td}>{t.cardsCount}</td>
               <td className={s.td}>{dateUpdate}</td>
@@ -98,7 +119,7 @@ export const TbodyPack: React.FC<TbodyType> = memo(({ packs }) => {
           )
         })}
       </tbody>
-      <ModalWrapper isOpen={isOpen} status={status} packId={id} name={name} />
+      <ModalWrapper isOpen={isOpen} status={status} packId={id} name={name} deckCover={deckCover} />
     </>
   )
 })

@@ -1,13 +1,20 @@
 import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit'
 import { FieldValues } from 'react-hook-form'
 
-import { isInitialized, setAppError, setAppStatus } from '../../app/appSlice'
-import { errorUtils } from '../../common/utils/errorHandler'
+import {
+  authApi,
+  BlockUserType,
+  RegistrationRequestType,
+  SetNewPasswordType,
+  UpdateUserType,
+} from './authApi'
 
-import { authApi, BlockUserType, RegistrationRequestType, SetNewPasswordType } from './authApi'
+import { isInitialized, setAppError, setAppStatus } from 'app/appSlice'
+import { errorUtils } from 'common/utils/errorHandler'
 
 export type UserType = {
   _id: string
+  avatar: string
   email: string
   rememberMe: boolean
   isAdmin: boolean
@@ -133,14 +140,14 @@ export const blockUserTC = createAsyncThunk(
   }
 )
 
-export const updateNameTC = createAsyncThunk(
+export const updateUserTC = createAsyncThunk(
   'updateName',
-  async (newName: string, { dispatch }) => {
+  async ({ name, avatar }: UpdateUserType, { dispatch }) => {
     dispatch(setAppStatus('loading'))
     try {
-      const res = await authApi.update({ name: newName })
+      const res = await authApi.update({ name, avatar })
 
-      dispatch(updateUser(res.data.updatedUser.name))
+      dispatch(updateUser({ name: res.data.updatedUser.name, avatar: res.data.updatedUser.avatar }))
       dispatch(setAppError('Name changed'))
       dispatch(setAppStatus('success'))
     } catch (e: any) {
@@ -182,8 +189,9 @@ const authSlice = createSlice({
     isPasswordChanged: (state, action: PayloadAction<boolean>) => {
       state.isPasswordChanged = action.payload
     },
-    updateUser: (state, action: PayloadAction<string>) => {
-      state.user.name = action.payload
+    updateUser: (state, action: PayloadAction<UpdateUserType>) => {
+      state.user.name = action.payload.name
+      state.user.avatar = action.payload.avatar
     },
   },
 })
