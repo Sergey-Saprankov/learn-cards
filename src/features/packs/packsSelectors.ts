@@ -1,4 +1,4 @@
-import { RootStateType } from '../../store/store'
+import { RootStateType } from 'store/store'
 
 export const packsListSelector = (state: RootStateType) => state.app.packList
 export const packsSelector = (state: RootStateType) => state.packs.cardPacks
@@ -17,3 +17,4 @@ export const packsSortSelector = (state: RootStateType) => state.packs.searchPar
 export const packsUserIdSelector = (state: RootStateType) => state.packs.searchParams.user_id
 
 export const packsAllSearchParametersSelector = (state: RootStateType) => state.packs.searchParams
+export const packDeckCover = (state: RootStateType) => state.card.packDeckCover

@@ -47,11 +47,11 @@ export const TbodyPack: React.FC<TbodyType> = memo(({ packs }) => {
 
   return (
     <>
-      <tbody>
+      <tbody className={s.body}>
         {packs?.map(t => {
           const dateUpdate = dateHandler(t.updated)
-          const userName = userNameHandler(t.user_name)
-          const title = userNameHandler(t.name)
+          const userName = userNameHandler(t.user_name, 22)
+          const title = userNameHandler(t.name, 42)
           const img = errorImg ? defaultAva : t.deckCover
           const getCardsPack = () => {
             return navigate(`${PATH.CARD_LIST}/${t._id}`)

@@ -23,7 +23,7 @@ export const UserAccount = () => {
   const navigate = useNavigate()
   const isLoggedIn = useAppSelector(isLoggedInSelector)
   const user = useAppSelector(authUserInfoSelector)
-  const userName = userNameHandler(user.name)
+  const userName = userNameHandler(user.name, 26)
   let userAvatar = user.avatar
 
   const errorHandler = () => {

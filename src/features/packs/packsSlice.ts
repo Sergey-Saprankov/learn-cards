@@ -37,7 +37,7 @@ const initialState: InititalStateType = {
     user_id: '',
     packName: '',
     page: 1,
-    pageCount: 10,
+    pageCount: 6,
     min: 0,
     max: 0,
     sortPack: '',

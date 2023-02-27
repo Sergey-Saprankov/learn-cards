@@ -1,5 +1,5 @@
-export const userNameHandler = (userName: string) => {
-  const max = 22
+export const userNameHandler = (userName: string, maxLength: number) => {
+  const max = maxLength
   const name = userName.split('@')[0]
 
   return name.length <= max

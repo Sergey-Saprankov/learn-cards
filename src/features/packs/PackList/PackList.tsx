@@ -63,15 +63,17 @@ export const PackList = () => {
     <div className={s.container}>
       <div className={s.wrapper}>
         <div className={s.innerWrapper}>
-          <PacksHeader title={'Packs list'} buttonTitle={'Add new pack'} />
-          <SearchPanel>
-            <Search initialValue={packName} onChange={searchByName} />
-            <Sort />
-          </SearchPanel>
+          <div className={s.packHeaderBlock}>
+            <PacksHeader title={'Packs list'} buttonTitle={'Add new pack'} />
+            <SearchPanel>
+              <Search initialValue={packName} onChange={searchByName} />
+              <Sort />
+            </SearchPanel>
+          </div>
           {emptyCheck ? (
             <EmptyPackSearch />
           ) : (
-            <>
+            <div className={s.packContentBlock}>
               <TablePackListWrapper>
                 <Thead packList={packList} />
                 <TbodyPack packs={packs} />
@@ -82,7 +84,7 @@ export const PackList = () => {
                 itemsCountForPage={pageCount}
                 onChange={onChange}
               />
-            </>
+            </div>
           )}
         </div>
       </div>

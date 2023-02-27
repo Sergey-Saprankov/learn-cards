@@ -1,11 +1,10 @@
-@import '../../../../common/styles/mixins';
+@import 'src/common/styles/mixins';
 
 .innerWrapper {
   width: 100%;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin-bottom: 40px;
 
   .btn {
     padding: 10px 15px;

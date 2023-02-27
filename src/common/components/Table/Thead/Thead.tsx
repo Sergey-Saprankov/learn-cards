@@ -1,24 +1,20 @@
 import React, { memo } from 'react'
 
-import {
-  CardListType,
-  PackListType,
-  setSortStatusCards,
-  setSortStatusPack,
-} from '../../../../app/appSlice'
-import sort from '../../../../assets/sortTable.svg'
-import { setSearchCardParams } from '../../../../features/cards/cardSlice'
-import { setSearchParams } from '../../../../features/packs/packsSlice'
-import { useAppDispatch, useAppSelector } from '../../../hooks'
-
 import s from './Thead.module.scss'
+
+import { CardListType, PackListType, setSortStatusCards, setSortStatusPack } from 'app/appSlice'
+import sort from 'assets/sortTable.svg'
+import { useAppDispatch, useAppSelector } from 'common/hooks'
+import { setSearchCardParams } from 'features/cards/cardSlice'
+import { setSearchParams } from 'features/packs/packsSlice'
 
 type TheadType = {
   packList?: PackListType
   cardList?: CardListType
+  className?: string
 }
 
-export const Thead: React.FC<TheadType> = memo(({ packList, cardList }) => {
+export const Thead: React.FC<TheadType> = memo(({ packList, cardList, className }) => {
   const dispatch = useAppDispatch()
   const params = useAppSelector(state => state.packs.searchParams)
   const sortParam = packList ? packList : cardList
@@ -47,21 +43,15 @@ export const Thead: React.FC<TheadType> = memo(({ packList, cardList }) => {
 
     return (
       <th key={i + 1} className={s.th}>
-        {i < 4 ? (
-          <div className={s.titleContainer}>
-            <span className={s.sortText}>{el.title}</span>
-            <img
-              onClick={sortHandler}
-              className={el.status === 1 ? s.iconSort : `${s.iconSort} ${s.rotate}`}
-              src={sort}
-              alt="sort"
-            />
-          </div>
-        ) : (
-          <div className={s.titleContainer}>
-            <span className={s.sortText}>{el.title}</span>
-          </div>
-        )}
+        <div className={s.titleContainer}>
+          <span className={s.sortText}>{el.title}</span>
+          <img
+            onClick={sortHandler}
+            className={el.status === 1 ? s.iconSort : `${s.iconSort} ${s.rotate}`}
+            src={sort}
+            alt="sort"
+          />
+        </div>
       </th>
     )
   })

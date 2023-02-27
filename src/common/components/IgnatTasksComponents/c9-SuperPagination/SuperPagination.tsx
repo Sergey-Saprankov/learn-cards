@@ -69,6 +69,8 @@ const SuperPagination: React.FC<SuperPaginationPropsType> = ({
           { id: 6, value: 6 },
           { id: 8, value: 8 },
           { id: 10, value: 10 },
+          { id: 20, value: 20 },
+          { id: 30, value: 30 },
         ]}
         onChangeOption={onChangeSelect}
       />

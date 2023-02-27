@@ -1,10 +1,11 @@
 import React, { FC, memo, useState } from 'react'
 
-import { setModalStatus } from '../../../../app/appSlice'
-import { Button } from '../../../../common/components/Button/Button'
-import { useAppDispatch, useAppSelector } from '../../../../common/hooks'
-
 import s from './PacksHeader.module.scss'
+
+import { setModalStatus } from 'app/appSlice'
+import { Button } from 'common/components/Button/Button'
+import { useAppDispatch, useAppSelector } from 'common/hooks'
+import { authUserInfoSelector } from 'features/auth/authSelectors'
 
 type PacksHeaderType = {
   title: string
