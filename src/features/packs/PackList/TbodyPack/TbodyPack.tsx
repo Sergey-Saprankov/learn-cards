@@ -7,6 +7,7 @@ import s from './TbodyPack.module.scss'
 import { modalStatus, isClosingForAnimation } from 'app/appSelectors'
 import { setModalStatus } from 'app/appSlice'
 import defaultAva from 'assets/notFound.jpg'
+import { EmptyPack } from 'common/components/EmptyPack/EmptyPack'
 import { DeleteIcon } from 'common/components/Icon/DeleteIcon/Delete'
 import { EditIcon } from 'common/components/Icon/EditIcon/EditIcon'
 import { TeachIcon } from 'common/components/Icon/TeachIcon/TeachIcon'
@@ -19,6 +20,7 @@ import { userNameHandler } from 'common/utils/userNameHandler'
 import { authUserIdSelector } from 'features/auth/authSelectors'
 import { fetchCardTC } from 'features/cards/cardSlice'
 import { ModalWrapper } from 'features/MainModal/ModalWrapper'
+import { packsSelector } from 'features/packs/packsSelectors'
 import { PackType } from 'features/packs/packsType'
 
 type TbodyType = {
@@ -119,6 +121,7 @@ export const TbodyPack: React.FC<TbodyType> = memo(({ packs }) => {
           )
         })}
       </tbody>
+      {packs?.length === 0 && <EmptyPack />}
       <ModalWrapper isOpen={isOpen} status={status} packId={id} name={name} deckCover={deckCover} />
     </>
   )

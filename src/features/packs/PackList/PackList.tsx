@@ -40,7 +40,6 @@ export const PackList = () => {
   const user_id = useAppSelector(packsUserIdSelector)
   const sortPack = useAppSelector(packsSortSelector)
   const packName = useAppSelector(packsNameSelector)
-  const emptyCheck = packName !== '' && packs.length === 0
 
   const dispatch = useAppDispatch()
 
@@ -70,22 +69,19 @@ export const PackList = () => {
               <Sort />
             </SearchPanel>
           </div>
-          {emptyCheck ? (
-            <EmptyPackSearch />
-          ) : (
-            <div className={s.packContentBlock}>
-              <TablePackListWrapper>
-                <Thead packList={packList} />
-                <TbodyPack packs={packs} />
-              </TablePackListWrapper>
-              <SuperPagination
-                page={page}
-                totalCount={totalPagesCount}
-                itemsCountForPage={pageCount}
-                onChange={onChange}
-              />
-            </div>
-          )}
+
+          <div className={s.packContentBlock}>
+            <TablePackListWrapper>
+              {packs.length !== 0 && <Thead packList={packList} />}
+              <TbodyPack packs={packs} />
+            </TablePackListWrapper>
+            <SuperPagination
+              page={page}
+              totalCount={totalPagesCount}
+              itemsCountForPage={pageCount}
+              onChange={onChange}
+            />
+          </div>
         </div>
       </div>
     </div>

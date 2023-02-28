@@ -10,6 +10,7 @@ import { EditIcon } from 'common/components/Icon/EditIcon/EditIcon'
 import { CardsRating } from 'common/components/Rating/Rating'
 import { useAppDispatch, useAppSelector, useDebounce } from 'common/hooks'
 import { dateHandler } from 'common/utils'
+import { deCover } from 'features/cards/CardList/cardSelectors'
 import { CardType } from 'features/cards/cardType'
 import { ModalWrapper } from 'features/MainModal/ModalWrapper'
 
@@ -22,7 +23,7 @@ type TbodyType = {
 export const TbodyCard: React.FC<TbodyType> = memo(({ card, packName, packId }) => {
   const userId = useAppSelector(state => state.auth.user._id)
   const packUserId = useAppSelector(state => state.card.searchParams.packUserId)
-
+  const deCoverPack = useAppSelector(deCover)
   const dispatch = useAppDispatch()
   const isClosing = useAppSelector(isClosingForAnimation)
   const status = useAppSelector(modalStatus)
@@ -118,6 +119,7 @@ export const TbodyCard: React.FC<TbodyType> = memo(({ card, packName, packId }) 
         question={question}
         cardId={id}
         answer={answer}
+        deckCover={deCoverPack}
       />
     </>
   )

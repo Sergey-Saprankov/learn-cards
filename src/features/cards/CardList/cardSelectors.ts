@@ -14,3 +14,4 @@ export const cardAnswerCardSelector = (state: RootStateType) => state.card.searc
 export const sortCardsSelector = (state: RootStateType) => state.card.searchParams.sortCards
 export const cardsTotalCountSelector = (state: RootStateType) =>
   state.card.searchParams.cardsTotalCount
+export const deCover = (state: RootStateType) => state.card.packDeckCover

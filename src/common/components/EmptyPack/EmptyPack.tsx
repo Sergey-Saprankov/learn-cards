@@ -9,9 +9,10 @@ export const EmptyPack = memo(() => {
   const cardSearch = useAppSelector(state => state.card.searchParams.cardQuestion)
 
   return (
-    <tbody>
-      <tr>
+    <tbody className={s.body}>
+      <tr className={s.tr}>
         <td className={s.td}>
+          <h3 className={s.title}>Nothing found!</h3>
           <img className={s.emptyPack} src={emptyPack} alt="packEmpty" />
           <div className={s.description}>
             {cardSearch === '' ? <>Empty pack!</> : <>Change search parameters</>}
@@ -21,15 +22,3 @@ export const EmptyPack = memo(() => {
     </tbody>
   )
 })
-
-//   <div className={s.container}>
-//   <div className={s.wrapper}>
-//   <div className={s.innerWrapper}>
-//   <h3 className={s.title}>Nothing found!</h3>
-// <img className={s.emptyPack} src={emptyPack} alt="packEmpty" />
-// <div className={s.discription}>
-//   {cardSearch === '' ? <>Empty pack!</> : <>Change search parameters</>}
-// </div>
-// </div>
-// </div>
-// </div>
