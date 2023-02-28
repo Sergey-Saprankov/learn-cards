@@ -32,9 +32,9 @@ export const CardForm: FC<CardFormType> = memo(
     if (answer && answerFile && answerFile === 'null') startAnswer = answer
     const dispatch = useAppDispatch()
     const [questionSelect, setQuestionSelect] = useState(
-      startQuestion === question ? 'text' : 'images'
+      startQuestion === question ? 'text' : 'image'
     )
-    const [answerSelect, setAnswerSelect] = useState(startAnswer === answer ? 'text' : 'images')
+    const [answerSelect, setAnswerSelect] = useState(startAnswer === answer ? 'text' : 'image')
     const [cardQuestionText, setCardQuestionText] = useState(
       startQuestion === question ? question : ''
     )
@@ -93,12 +93,23 @@ export const CardForm: FC<CardFormType> = memo(
       dispatch(isClosingModal(true))
     }
 
+    console.log(
+      'questionSelect' + ' ' + questionSelect,
+      'answerSelect' + ' ' + answerSelect,
+      'cardQuestionText' + ' ' + cardQuestionText,
+      'cardAnswerText' + ' ' + cardAnswerText,
+      'cardQuestionFile' + ' ' + cardQuestionFile,
+      'cardAnswerFile' + ' ' + cardAnswerFile
+    )
+
     const onChangeCardHandler = () => {
-      console.log(cardQuestionText, cardAnswerText, cardQuestionFile, cardAnswerFile)
-      const updateQuestionText = questionSelect === 'text' ? cardQuestionText : ''
-      const updateAnswerText = answerSelect === 'text' ? cardAnswerText : ''
-      const updateQuestionFile = questionSelect === 'image' ? cardQuestionFile : 'null'
-      const updateAnswerFile = answerSelect === 'image' ? cardAnswerFile : 'null'
+      const updateQuestionText =
+        questionSelect === 'text' && cardQuestionText ? cardQuestionText : ''
+      const updateAnswerText = answerSelect === 'text' && cardAnswerText ? cardAnswerText : ''
+      const updateQuestionFile =
+        cardQuestionFile !== 'null' && questionSelect === 'image' ? cardQuestionFile : 'null'
+      const updateAnswerFile =
+        cardAnswerFile !== 'null' && answerSelect === 'image' ? cardAnswerFile : 'null'
 
       if (question && answer && cardId && packId) {
         dispatch(

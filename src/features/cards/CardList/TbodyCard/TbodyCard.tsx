@@ -74,10 +74,26 @@ export const TbodyCard: React.FC<TbodyType> = memo(({ card, packName, packId }) 
           return isMyCard ? (
             <tr key={t._id} className={s.tr}>
               <td className={s.td}>
-                <div className={s.title}>{t.question}</div>
+                {t.questionImg === 'null' ? (
+                  <div className={s.title}>{t.question}</div>
+                ) : (
+                  <div className={s.coverContainer}>
+                    <div className={s.avaContainer}>
+                      <img className={s.bg} src={t.questionImg} alt="question" />
+                    </div>
+                  </div>
+                )}
               </td>
               <td className={s.td}>
-                <div className={s.title}>{t.answer}</div>
+                {t.answerImg === 'null' ? (
+                  <div className={s.title}>{t.answer}</div>
+                ) : (
+                  <div className={s.coverContainer}>
+                    <div className={s.avaContainer}>
+                      <img className={s.bg} src={t.answerImg} alt="answer" />
+                    </div>
+                  </div>
+                )}
               </td>
               <td className={s.td}>{update}</td>
               <td className={s.td}>
@@ -97,10 +113,26 @@ export const TbodyCard: React.FC<TbodyType> = memo(({ card, packName, packId }) 
           ) : (
             <tr key={t._id} className={s.tr}>
               <td className={s.td}>
-                <div className={s.title}>{t.question}</div>
+                {t.questionImg === 'null' ? (
+                  <div className={s.title}>{t.question}</div>
+                ) : (
+                  <div className={s.coverContainer}>
+                    <div className={s.avaContainer}>
+                      <img className={s.bg} src={t.questionImg} alt="question" />
+                    </div>
+                  </div>
+                )}
               </td>
               <td className={s.td}>
-                <div className={s.title}>{t.answer}</div>
+                {t.answerImg === 'null' ? (
+                  <div className={s.title}>{t.answer}</div>
+                ) : (
+                  <div className={s.coverContainer}>
+                    <div className={s.avaContainer}>
+                      <img className={s.bg} src={t.answerImg} alt="answer" />
+                    </div>
+                  </div>
+                )}
               </td>
               <td className={s.td}>{update}</td>
               <td className={s.td}>
