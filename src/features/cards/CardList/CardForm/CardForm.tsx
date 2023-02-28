@@ -93,15 +93,6 @@ export const CardForm: FC<CardFormType> = memo(
       dispatch(isClosingModal(true))
     }
 
-    console.log(
-      'questionSelect' + ' ' + questionSelect,
-      'answerSelect' + ' ' + answerSelect,
-      'cardQuestionText' + ' ' + cardQuestionText,
-      'cardAnswerText' + ' ' + cardAnswerText,
-      'cardQuestionFile' + ' ' + cardQuestionFile,
-      'cardAnswerFile' + ' ' + cardAnswerFile
-    )
-
     const onChangeCardHandler = () => {
       const updateQuestionText =
         questionSelect === 'text' && cardQuestionText ? cardQuestionText : ''
