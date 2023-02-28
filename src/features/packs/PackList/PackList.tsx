@@ -34,6 +34,8 @@ export const PackList = () => {
   const isLoggedIn = useAppSelector(isLoggedInSelector)
   const pageCount = useAppSelector(packsCountOnPageSelector)
   const totalPagesCount = useAppSelector(packsTotalPageCountSelector)
+
+  console.log(pageCount)
   const page = useAppSelector(packsPageSelector)
   const max = useAppSelector(packsMaxSelector)
   const min = useAppSelector(packsMinSelector)
