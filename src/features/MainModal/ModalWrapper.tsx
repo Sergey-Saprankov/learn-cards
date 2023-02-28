@@ -16,10 +16,24 @@ type ModalWrapperType = {
   cardId?: string
   answer?: string
   deckCover?: string
+  answerFile?: string
+  questionFile?: string
 }
 
 export const ModalWrapper: FC<ModalWrapperType> = memo(
-  ({ className, isOpen, status, packId, name, question, cardId, answer, deckCover }) => {
+  ({
+    className,
+    isOpen,
+    status,
+    packId,
+    name,
+    question,
+    cardId,
+    answer,
+    deckCover,
+    questionFile,
+    answerFile,
+  }) => {
     const changePack = status === 'PackForm' && (
       <PackForm id={packId} name={name} deckCover={deckCover} />
     )
@@ -30,7 +44,14 @@ export const ModalWrapper: FC<ModalWrapperType> = memo(
       <DeleteFormTemplate cardId={cardId} name={question} title={status} />
     )
     const changeCard = status === 'CardForm' && (
-      <CardForm question={question} answer={answer} cardId={cardId} packId={packId} />
+      <CardForm
+        question={question}
+        answer={answer}
+        cardId={cardId}
+        packId={packId}
+        questionFile={questionFile}
+        answerFile={answerFile}
+      />
     )
     const form = changePack || deletePack || deleteCard || changeCard || null
 

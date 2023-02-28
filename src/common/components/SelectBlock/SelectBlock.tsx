@@ -24,7 +24,7 @@ export const SelectBlock: FC<SelectBlockType> = memo(({ condition, onChange, val
         <>
           <div className={s.fileContainer}>
             <span className={s.description}>Question</span>
-            <SelectionFile />
+            <SelectionFile onChange={onChange} file={value} />
           </div>
         </>
       )}

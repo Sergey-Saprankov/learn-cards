@@ -1,4 +1,4 @@
-import React, { useState, FC, memo, useCallback } from 'react'
+import React, { useState, FC, memo, useCallback, useEffect } from 'react'
 
 import { isClosingModal } from 'app/appSlice'
 import { Button } from 'common/components/Button/Button'
@@ -13,110 +13,159 @@ type CardFormType = {
   question?: string
   cardId?: string
   packId?: string
+  answerFile?: string
+  questionFile?: string
 }
 
 const option = ['text', 'image']
 
-export const CardForm: FC<CardFormType> = memo(({ cardId, question, answer, packId }) => {
-  const dispatch = useAppDispatch()
-  const [questionSelect, setQuestionSelect] = useState('text')
-  const [answerSelect, setAnswerSelect] = useState('text')
-  const [cardQuestion, setCardQuestion] = useState(question ? question : '')
-  const [cardAnswer, setCardAnswer] = useState(answer ? answer : '')
-  const title = answer && question ? 'Update card' : 'Add new card'
+export const CardForm: FC<CardFormType> = memo(
+  ({ cardId, question, answer, packId, answerFile, questionFile }) => {
+    let startQuestion = ''
 
-  const onChangeCardQuestionHandler = useCallback(
-    (value: string) => {
-      setCardQuestion(value)
-    },
-    [setCardQuestion]
-  )
+    if (questionFile && questionFile !== 'null') startQuestion = questionFile
+    if (question && questionFile && questionFile === 'null') startQuestion = question
 
-  const onChangeCardAnswerHandler = useCallback(
-    (value: string) => {
-      setCardAnswer(value)
-    },
-    [setCardAnswer]
-  )
+    let startAnswer = ''
 
-  const changeQuestionSelect = useCallback(
-    (value: string) => {
-      setQuestionSelect(value)
-    },
-    [setQuestionSelect]
-  )
+    if (answerFile && answerFile !== 'null') startAnswer = answerFile
+    if (answer && answerFile && answerFile === 'null') startAnswer = answer
+    const dispatch = useAppDispatch()
+    const [questionSelect, setQuestionSelect] = useState(
+      startQuestion === question ? 'text' : 'images'
+    )
+    const [answerSelect, setAnswerSelect] = useState(startAnswer === answer ? 'text' : 'images')
+    const [cardQuestionText, setCardQuestionText] = useState(
+      startQuestion === question ? question : ''
+    )
+    const [cardAnswerText, setCardAnswerText] = useState(startAnswer === answer ? answer : '')
+    const [cardQuestionFile, setCardQuestionFile] = useState(
+      startQuestion === questionFile ? questionFile : ''
+    )
+    const [cardAnswerFile, setCardAnswerFile] = useState(
+      startAnswer === answerFile ? answerFile : ''
+    )
+    const title = answer && question ? 'Update card' : 'Add new card'
 
-  const changeAnswerSelect = useCallback(
-    (value: string) => {
-      setAnswerSelect(value)
-    },
-    [setAnswerSelect]
-  )
+    const onChangeCardQuestionTextHandler = useCallback(
+      (value: string) => {
+        setCardQuestionText(value)
+      },
+      [setCardQuestionText]
+    )
 
-  const closeModalHandler = () => {
-    dispatch(isClosingModal(true))
-  }
+    const onChangeCardAnswerTextHandler = useCallback(
+      (value: string) => {
+        setCardAnswerText(value)
+      },
+      [setCardAnswerText]
+    )
 
-  const onChangeCardHandler = () => {
-    if (question && answer && cardId && packId) {
-      dispatch(
-        updateCardTC({
-          updateCard: {
-            card: { _id: cardId, question: cardQuestion, answer: cardAnswer },
-          },
-          cardsPackID: packId,
-        })
-      )
+    const onChangeCardQuestionFileHandler = useCallback(
+      (value: string) => {
+        setCardQuestionFile(value)
+      },
+      [setCardQuestionFile]
+    )
+
+    const onChangeCardAnswerFileHandler = useCallback(
+      (value: string) => {
+        setCardAnswerFile(value)
+      },
+      [setCardAnswerFile]
+    )
+
+    const changeQuestionSelect = useCallback(
+      (value: string) => {
+        setQuestionSelect(value)
+      },
+      [setQuestionSelect]
+    )
+
+    const changeAnswerSelect = useCallback(
+      (value: string) => {
+        setAnswerSelect(value)
+      },
+      [setAnswerSelect]
+    )
+
+    const closeModalHandler = () => {
+      dispatch(isClosingModal(true))
     }
-    if (packId && !answer && !question) {
-      dispatch(
-        createCardTC({ card: { cardsPack_id: packId, question: cardQuestion, answer: cardAnswer } })
-      )
+
+    const onChangeCardHandler = () => {
+      console.log(cardQuestionText, cardAnswerText, cardQuestionFile, cardAnswerFile)
+      const updateQuestionText = questionSelect === 'text' ? cardQuestionText : ''
+      const updateAnswerText = answerSelect === 'text' ? cardAnswerText : ''
+      const updateQuestionFile = questionSelect === 'image' ? cardQuestionFile : 'null'
+      const updateAnswerFile = answerSelect === 'image' ? cardAnswerFile : 'null'
+
+      if (question && answer && cardId && packId) {
+        dispatch(
+          updateCardTC({
+            updateCard: {
+              card: {
+                _id: cardId,
+                question: updateQuestionText,
+                answer: updateAnswerText,
+                answerImg: updateAnswerFile,
+                questionImg: updateQuestionFile,
+              },
+            },
+            cardsPackID: packId,
+          })
+        )
+      }
+      if (packId && !answer && !question) {
+        dispatch(
+          createCardTC({
+            card: {
+              cardsPack_id: packId,
+              question: updateQuestionText,
+              answer: updateAnswerText,
+              answerImg: updateAnswerFile,
+              questionImg: updateQuestionFile,
+            },
+          })
+        )
+      }
+      dispatch(isClosingModal(true))
     }
-    dispatch(isClosingModal(true))
-  }
 
-  return (
-    <div className={s.CardForm}>
-      <h3 className={s.title}>{title}</h3>
-      <Select options={option} text={questionSelect} onChange={changeQuestionSelect} />
-      <SelectBlock
-        condition={questionSelect}
-        value={cardQuestion}
-        label={'question'}
-        onChange={onChangeCardQuestionHandler}
-      />
+    return (
+      <div className={s.CardForm}>
+        <h3 className={s.title}>{title}</h3>
+        <Select options={option} text={questionSelect} onChange={changeQuestionSelect} />
+        <SelectBlock
+          condition={questionSelect}
+          value={questionSelect === 'text' ? cardQuestionText : cardQuestionFile}
+          label={'question'}
+          onChange={
+            questionSelect === 'text'
+              ? onChangeCardQuestionTextHandler
+              : onChangeCardQuestionFileHandler
+          }
+        />
 
-      <Select options={option} text={answerSelect} onChange={changeAnswerSelect} />
-      <SelectBlock
-        condition={answerSelect}
-        value={cardAnswer}
-        label={'question'}
-        onChange={onChangeCardAnswerHandler}
-      />
+        <Select options={option} text={answerSelect} onChange={changeAnswerSelect} />
+        <SelectBlock
+          condition={answerSelect}
+          value={answerSelect === 'text' ? cardAnswerText : cardAnswerFile}
+          label={'question'}
+          onChange={
+            answerSelect === 'text' ? onChangeCardAnswerTextHandler : onChangeCardAnswerFileHandler
+          }
+        />
 
-      <div className={s.buttonContainer}>
-        <Button onClick={closeModalHandler} className={s.btn}>
-          Cancel
-        </Button>
-        <Button onClick={onChangeCardHandler} className={`${s.btn} ${s.primary}`}>
-          Save
-        </Button>
+        <div className={s.buttonContainer}>
+          <Button onClick={closeModalHandler} className={s.btn}>
+            Cancel
+          </Button>
+          <Button onClick={onChangeCardHandler} className={`${s.btn} ${s.primary}`}>
+            Save
+          </Button>
+        </div>
       </div>
-    </div>
-  )
-})
-
-//   <label>
-//   Answer
-//   <SuperInput
-// value={cardAnswer}
-// onChange={onChangeCardAnswerHandler}
-// placeholder={'no answer'}
-// />
-// </label>
-
-//   <div className={s.fileContainer}>
-//   <span className={s.description}>Answer</span>
-// <SelectionFile />
-// </div>
+    )
+  }
+)

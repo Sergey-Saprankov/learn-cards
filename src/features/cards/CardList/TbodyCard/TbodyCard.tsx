@@ -33,11 +33,15 @@ export const TbodyCard: React.FC<TbodyType> = memo(({ card, packName, packId }) 
   const [id, setId] = useState('')
   const [question, setQuestion] = useState('')
   const [answer, setAnswer] = useState('')
+  const [questionFile, setQuestionFile] = useState('')
+  const [answerFile, setAnswerFile] = useState('')
 
   useEffect(() => {
     setId('')
     setQuestion('')
     setAnswer('')
+    setQuestionFile('')
+    setAnswerFile('')
   }, [debounce])
 
   const isMyCard = userId === packUserId
@@ -57,6 +61,8 @@ export const TbodyCard: React.FC<TbodyType> = memo(({ card, packName, packId }) 
             setId(t._id)
             setQuestion(t.question)
             setAnswer(t.answer)
+            setAnswerFile(t.answerImg)
+            setQuestionFile(t.questionImg)
           }
 
           const deleteModalHandler = () => {
@@ -120,6 +126,8 @@ export const TbodyCard: React.FC<TbodyType> = memo(({ card, packName, packId }) 
         cardId={id}
         answer={answer}
         deckCover={deCoverPack}
+        questionFile={questionFile}
+        answerFile={answerFile}
       />
     </>
   )
