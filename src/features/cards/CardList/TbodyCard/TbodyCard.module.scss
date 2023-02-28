@@ -41,7 +41,9 @@
 
       .avaContainer {
         min-width: 80px;
-        height: 80px;
+        min-height: 80px;
+        max-width: 80px;
+        max-height: 80px;
         display: flex;
         justify-content: center;
         align-items: center;
