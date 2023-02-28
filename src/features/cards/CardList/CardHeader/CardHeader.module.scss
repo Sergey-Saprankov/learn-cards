@@ -1,16 +1,14 @@
-@import '../../../../common/styles/mixins';
-
-@import '../../../../common/styles/mixins';
+@import 'src/common/styles/mixins';
 
 .innerWrapper {
-  padding-top: 50px;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin-bottom: 20px;
 
   .wrapper{
-
+    display: flex;
+    align-items: center;
+    gap: 20px;
     width: 70%;
     word-break: break-word;
 
@@ -20,6 +18,36 @@
       line-height: 27px;
     }
 
+    .avaContainer {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-width: 70px;
+      min-height: 70px;
+      max-width: 70px;
+      max-height: 70px;
+      border-radius: 50%;
+      overflow: hidden;
+
+      .innerAvaWrapper {
+        min-width: 70px;
+        min-height: 70px;
+        max-width: 70px;
+        max-height: 70px;
+        background-color: #fff;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border: 1px solid #212121;
+        border-radius: 50%;
+        overflow: hidden;
+
+        .ava {
+          width: 100%;
+          height: auto;
+        }
+      }
+    }
   }
 
   .btn {

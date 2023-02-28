@@ -6,18 +6,19 @@ export type ModalStatus = 'idle' | StatusPackModal | StatusCardsModal
 
 type StatusType = 'idle' | 'loading' | 'failed' | 'success'
 const packList = [
-  { title: 'Name', status: 0, sortName: 'name' },
-  { title: 'Cards', status: 0, sortName: 'cardsCount' },
-  { title: 'Last Updated', status: 0, sortName: 'updated' },
-  { title: 'Created by', status: 0, sortName: 'user_name' },
-  { title: 'Actions', status: 0 },
+  { title: 'Name', status: 0, sortName: 'name', size: 30 },
+  { title: 'Cards', status: 0, sortName: 'cardsCount', size: 13.13 },
+  { title: 'Last Updated', status: 0, sortName: 'updated', size: 13.13 },
+  { title: 'Created by', status: 0, sortName: 'user_name', size: 13.13 },
+  { title: 'Actions', status: 0, size: 10 },
 ]
 
 const cardList = [
-  { title: 'Question', status: 0, sortName: 'question' },
-  { title: 'Answer', status: 0, sortName: 'answer' },
-  { title: 'Last Updated', status: 0, sortName: 'updated' },
-  { title: 'Grade', status: 0, sortName: 'grade' },
+  { title: 'Question', status: 0, sortName: 'question', size: 20 },
+  { title: 'Answer', status: 0, sortName: 'answer', size: 20 },
+  { title: 'Last Updated', status: 0, sortName: 'updated', size: 13.13 },
+  { title: 'Actions', status: 0, size: 13.13 },
+  { title: 'Grade', status: 0, sortName: 'grade', size: 13.13 },
 ]
 
 export type CardListType = typeof cardList

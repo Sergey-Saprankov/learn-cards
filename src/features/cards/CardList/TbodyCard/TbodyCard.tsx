@@ -47,7 +47,7 @@ export const TbodyCard: React.FC<TbodyType> = memo(({ card, packName, packId }) 
 
   return (
     <>
-      <tbody>
+      <tbody className={s.body}>
         {card?.map(t => {
           const update = dateHandler(t.updated)
 
@@ -66,26 +66,42 @@ export const TbodyCard: React.FC<TbodyType> = memo(({ card, packName, packId }) 
 
           return isMyCard ? (
             <tr key={t._id} className={s.tr}>
-              <td className={s.td}>{t.question}</td>
-              <td className={s.td}>{t.answer}</td>
+              <td className={s.td}>
+                <div className={s.title}>{t.question}</div>
+              </td>
+              <td className={s.td}>
+                <div className={s.title}>{t.answer}</div>
+              </td>
               <td className={s.td}>{update}</td>
+              <td className={s.td}>
+                <div className={s.iconContainer}>
+                  <EditIcon onClick={editModalHandler} />
+                  <DeleteIcon onClick={deleteModalHandler} />
+                </div>
+              </td>
               <td className={s.td}>
                 <div className={s.gradeColumn}>
                   <div className={s.grade}>
                     <CardsRating value={t.grade} />
-                  </div>
-                  <div className={s.iconContainer}>
-                    <EditIcon onClick={editModalHandler} />
-                    <DeleteIcon onClick={deleteModalHandler} />
                   </div>
                 </div>
               </td>
             </tr>
           ) : (
             <tr key={t._id} className={s.tr}>
-              <td className={s.td}>{t.question}</td>
-              <td className={s.td}>{t.answer}</td>
+              <td className={s.td}>
+                <div className={s.title}>{t.question}</div>
+              </td>
+              <td className={s.td}>
+                <div className={s.title}>{t.answer}</div>
+              </td>
               <td className={s.td}>{update}</td>
+              <td className={s.td}>
+                <div className={s.iconContainer}>
+                  <EditIcon fill={'#908c8c'} />
+                  <DeleteIcon fill={'#908c8c'} />
+                </div>
+              </td>
               <td className={s.td}>
                 <CardsRating value={t.grade} />
               </td>

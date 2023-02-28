@@ -93,7 +93,7 @@ export function AccountMenu() {
       >
         <Link to={PATH.ACCOUNT}>
           <MenuItem onClick={handleClose}>
-            <Avatar src={ava} /> My account
+            <Avatar src={userAvatar} /> My account
           </MenuItem>
         </Link>
         <Link to={PATH.PACK_LIST}>

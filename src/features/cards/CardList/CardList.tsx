@@ -60,16 +60,18 @@ export const CardList = () => {
     <div className={s.container}>
       <div className={s.wrapper}>
         <div className={s.innerWrapper}>
-          <div onClick={() => navigate(-1)} className={s.linkBackward}>
-            <img className={s.arrow} src={arrow} alt="arrow backward" />
-            <span className={s.backwardText}>Back to Packs List</span>
-          </div>
-          <CardHeader />
+          <div className={s.cardHeaderBlock}>
+            <div onClick={() => navigate(-1)} className={s.linkBackward}>
+              <img className={s.arrow} src={arrow} alt="arrow backward" />
+              <span className={s.backwardText}>Back to Packs List</span>
+            </div>
+            <CardHeader />
 
-          <SearchPanel>
-            <Search initialValue={cardQuestion} onChange={searchByName} />
-          </SearchPanel>
-          <>
+            <SearchPanel>
+              <Search initialValue={cardQuestion} onChange={searchByName} />
+            </SearchPanel>
+          </div>
+          <div className={s.cardContentBlock}>
             <TablePackListWrapper>
               {card.length !== 0 && <Thead cardList={cardsList} />}
               <TbodyCard card={card} packName={namePackActive} packId={id} />
@@ -80,7 +82,7 @@ export const CardList = () => {
               itemsCountForPage={pageCount}
               onChange={onChange}
             />
-          </>
+          </div>
         </div>
       </div>
     </div>

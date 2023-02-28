@@ -5,7 +5,7 @@ import s from './EditIcon.module.scss'
 type EditIconType = {
   fill?: string
   stroke?: string
-  onClick: () => void
+  onClick?: () => void
 }
 
 export const EditIcon: React.FC<EditIconType> = memo(({ stroke, fill, onClick }) => {

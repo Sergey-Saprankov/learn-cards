@@ -10,7 +10,7 @@ import { authUserInfoSelector } from 'features/auth/authSelectors'
 
 export const HeaderProfile = () => {
   const user = useAppSelector(authUserInfoSelector)
-  const userName = userNameHandler(user.name)
+  const userName = userNameHandler(user.name, 22)
 
   return (
     <div className={s.profileContainer}>

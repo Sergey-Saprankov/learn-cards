@@ -25,12 +25,14 @@ const initialState: InititalStateCardType = {
     max: 0,
     sortCards: '',
     page: 1,
-    pageCount: 10,
+    pageCount: 4,
     packName: '',
     packUserId: '',
     cardsTotalCount: 0,
     totalPagesCount: 0,
   },
+  packDeckCover: '',
+  packCreated: '',
 }
 
 export const fetchCardTC = createAsyncThunk(
@@ -140,6 +142,8 @@ const cardSlice = createSlice({
       state.searchParams.totalPagesCount = Math.ceil(
         action.payload.cardsTotalCount / action.payload.pageCount
       )
+      state.packDeckCover = action.payload.packDeckCover
+      state.packCreated = action.payload.packCreated
     },
     setSearchCardParams: (state, action: PayloadAction<CardQueryParamsType>) => {
       state.searchParams = { ...state.searchParams, ...action.payload }

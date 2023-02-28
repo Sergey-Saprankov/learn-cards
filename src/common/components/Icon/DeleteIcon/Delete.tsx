@@ -5,7 +5,7 @@ import s from './Delete.module.scss'
 type DeleteIconType = {
   fill?: string
   stroke?: string
-  onClick: () => void
+  onClick?: () => void
 }
 
 export const DeleteIcon: React.FC<DeleteIconType> = memo(({ stroke, fill, onClick }) => {

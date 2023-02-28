@@ -5,6 +5,7 @@ import s from './Thead.module.scss'
 import { CardListType, PackListType, setSortStatusCards, setSortStatusPack } from 'app/appSlice'
 import sort from 'assets/sortTable.svg'
 import { useAppDispatch, useAppSelector } from 'common/hooks'
+import { classNames } from 'common/utils/classNames'
 import { setSearchCardParams } from 'features/cards/cardSlice'
 import { setSearchParams } from 'features/packs/packsSlice'
 
@@ -42,15 +43,17 @@ export const Thead: React.FC<TheadType> = memo(({ packList, cardList, className 
     }
 
     return (
-      <th key={i + 1} className={s.th}>
+      <th style={{ width: `${el.size}vw` }} key={i + 1} className={s.th}>
         <div className={s.titleContainer}>
           <span className={s.sortText}>{el.title}</span>
-          <img
-            onClick={sortHandler}
-            className={el.status === 1 ? s.iconSort : `${s.iconSort} ${s.rotate}`}
-            src={sort}
-            alt="sort"
-          />
+          {el.title !== 'Actions' && (
+            <img
+              onClick={sortHandler}
+              className={el.status === 1 ? s.iconSort : `${s.iconSort} ${s.rotate}`}
+              src={sort}
+              alt="sort"
+            />
+          )}
         </div>
       </th>
     )

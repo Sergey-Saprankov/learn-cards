@@ -3,6 +3,8 @@ import { AnswerStatuses } from './LearnCardPage/learnCardSlice'
 export type InititalStateCardType = {
   cards: CardType[]
   searchParams: SearchParamsCardType
+  packDeckCover: string
+  packCreated: string
 }
 
 export type CardType = {
@@ -14,6 +16,7 @@ export type CardType = {
   user_id: string
   created: string
   updated: string
+  packDeckCover: string
   _id: string
 }
 
