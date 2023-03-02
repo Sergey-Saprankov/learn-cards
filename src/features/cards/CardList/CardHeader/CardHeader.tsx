@@ -1,4 +1,4 @@
-import React, { FC, memo, useState, useEffect } from 'react'
+import React, { FC, memo, useState, useEffect, ChangeEvent } from 'react'
 
 import { useDispatch } from 'react-redux'
 import { useNavigate, useParams } from 'react-router-dom'
@@ -28,10 +28,7 @@ export const CardHeader: FC<CardHeaderType> = memo(({}) => {
   const packUserId = useAppSelector(packUserIdCardSelector)
   const packName = useAppSelector(packNameCardSelector)
   const pack = useAppSelector(state => state.packs.cardPacks.find(p => p._id === id))
-  const packByName = pack ? pack.user_name : 'Unknown...'
-  const user = useAppSelector(authUserInfoSelector)
   const isMyCard = userId === packUserId
-  const [isAvaBroken, setIsAvaBroken] = useState(false)
 
   const img = deCover ? deCover : defaultCover
 
@@ -39,8 +36,8 @@ export const CardHeader: FC<CardHeaderType> = memo(({}) => {
     dispatch(setModalStatus('CardForm'))
   }
 
-  const onImgErrorHandler = () => {
-    setIsAvaBroken(true)
+  const onImgErrorHandler = (e: ChangeEvent<HTMLImageElement>) => {
+    e.currentTarget.src = defaultCover
   }
 
   return (
@@ -50,12 +47,7 @@ export const CardHeader: FC<CardHeaderType> = memo(({}) => {
           <>
             <div className={s.avaContainer}>
               <div className={s.innerAvaWrapper}>
-                <img
-                  className={s.ava}
-                  src={isAvaBroken ? defaultCover : img}
-                  alt="cover"
-                  onError={onImgErrorHandler}
-                />
+                <img className={s.ava} src={img} alt="cover" onError={onImgErrorHandler} />
               </div>
             </div>
             <PackMenu title={userNameHandler(packName, 120)} packId={id} />
@@ -64,12 +56,7 @@ export const CardHeader: FC<CardHeaderType> = memo(({}) => {
           <>
             <div className={s.avaContainer}>
               <div className={s.innerAvaWrapper}>
-                <img
-                  className={s.ava}
-                  src={isAvaBroken ? defaultCover : img}
-                  alt="cover"
-                  onError={onImgErrorHandler}
-                />
+                <img className={s.ava} src={img} alt="cover" onError={onImgErrorHandler} />
               </div>
             </div>
             <h2 className={s.title}>{packName}</h2>

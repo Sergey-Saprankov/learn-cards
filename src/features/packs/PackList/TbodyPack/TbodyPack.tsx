@@ -1,10 +1,10 @@
-import React, { memo, useEffect, useState } from 'react'
+import React, { memo, useEffect, useState, ChangeEvent } from 'react'
 
 import { useNavigate } from 'react-router-dom'
 
 import s from './TbodyPack.module.scss'
 
-import { modalStatus, isClosingForAnimation } from 'app/appSelectors'
+import { isClosingForAnimation, modalStatus } from 'app/appSelectors'
 import { setModalStatus } from 'app/appSlice'
 import defaultAva from 'assets/notFound.jpg'
 import { EmptyPack } from 'common/components/EmptyPack/EmptyPack'
@@ -20,7 +20,6 @@ import { userNameHandler } from 'common/utils/userNameHandler'
 import { authUserIdSelector } from 'features/auth/authSelectors'
 import { fetchCardTC } from 'features/cards/cardSlice'
 import { ModalWrapper } from 'features/MainModal/ModalWrapper'
-import { packsSelector } from 'features/packs/packsSelectors'
 import { PackType } from 'features/packs/packsType'
 
 type TbodyType = {
@@ -35,7 +34,6 @@ export const TbodyPack: React.FC<TbodyType> = memo(({ packs }) => {
   const status = useAppSelector(modalStatus)
   const isOpen = status !== 'idle'
   const debounce = useDebounce(isClosing, 200)
-  const [errorImg, setErrorImg] = useState(false)
 
   const [id, setId] = useState('')
   const [name, setName] = useState('')
@@ -54,13 +52,13 @@ export const TbodyPack: React.FC<TbodyType> = memo(({ packs }) => {
           const dateUpdate = dateHandler(t.updated)
           const userName = userNameHandler(t.user_name, 22)
           const title = userNameHandler(t.name, 42)
-          const img = errorImg ? defaultAva : t.deckCover
+          const img = t.deckCover ? t.deckCover : defaultAva
           const getCardsPack = () => {
             return navigate(`${PATH.CARD_LIST}/${t._id}`)
           }
 
-          const errorHandler = () => {
-            setErrorImg(true)
+          const errorHandler = (e: ChangeEvent<HTMLImageElement>) => {
+            e.currentTarget.src = defaultAva
           }
 
           const editModalHandler = () => {
@@ -92,12 +90,7 @@ export const TbodyPack: React.FC<TbodyType> = memo(({ packs }) => {
               <td onClick={getCardsPack} className={`${s.td} ${s.packTitle}`}>
                 <div className={s.coverContainer}>
                   <div className={s.avaContainer}>
-                    <img
-                      className={s.bg}
-                      src={t.deckCover ? t.deckCover : defaultAva}
-                      alt={'cover'}
-                      onError={errorHandler}
-                    />
+                    <img className={s.bg} src={img} alt={'cover'} onError={errorHandler} />
                   </div>
                   <span className={s.title}>{title}</span>
                 </div>

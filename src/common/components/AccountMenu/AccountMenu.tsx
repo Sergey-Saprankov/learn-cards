@@ -48,7 +48,7 @@ export function AccountMenu() {
             aria-expanded={open ? 'true' : undefined}
           >
             <div className={s.avatar}>
-              <Avatar src={userAvatar} sx={{ width: 36, height: 36 }}>
+              <Avatar src={userAvatar} sx={{ width: 36, height: 36, backgroundColor: '#fff' }}>
                 M
               </Avatar>
             </div>

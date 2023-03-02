@@ -40,16 +40,16 @@
       border-radius: 50%;
 
       .avaContainer {
-        min-width: 80px;
-        min-height: 80px;
-        max-width: 80px;
-        max-height: 80px;
+        min-width: 70px;
+        min-height: 70px;
+        max-width: 70px;
+        max-height: 70px;
         display: flex;
         justify-content: center;
         align-items: center;
         overflow: hidden;
-        border: 1px solid #fff;
-        border-radius: 50%;
+        border: 1px solid #000;
+        border-radius: 1em;
 
         .bg {
           max-width: 100%;

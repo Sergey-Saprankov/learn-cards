@@ -1,9 +1,11 @@
-import React, { memo, useEffect, useState } from 'react'
+import React, { memo, useEffect, useState, ChangeEvent } from 'react'
 
 import s from './TbodyCard.module.scss'
 
 import { isClosingForAnimation, modalStatus } from 'app/appSelectors'
 import { setModalStatus } from 'app/appSlice'
+import defaultImg from 'assets/notFound.jpg'
+import defaultAva from 'assets/notFound.jpg'
 import { EmptyPack } from 'common/components/EmptyPack/EmptyPack'
 import { DeleteIcon } from 'common/components/Icon/DeleteIcon/Delete'
 import { EditIcon } from 'common/components/Icon/EditIcon/EditIcon'
@@ -71,6 +73,10 @@ export const TbodyCard: React.FC<TbodyType> = memo(({ card, packName, packId }) 
             setQuestion(t.question)
           }
 
+          const errorHandler = (e: ChangeEvent<HTMLImageElement>) => {
+            e.currentTarget.src = defaultAva
+          }
+
           return isMyCard ? (
             <tr key={t._id} className={s.tr}>
               <td className={s.td}>
@@ -79,7 +85,12 @@ export const TbodyCard: React.FC<TbodyType> = memo(({ card, packName, packId }) 
                 ) : (
                   <div className={s.coverContainer}>
                     <div className={s.avaContainer}>
-                      <img className={s.bg} src={t.questionImg} alt="question" />
+                      <img
+                        onError={errorHandler}
+                        className={s.bg}
+                        src={t.questionImg || defaultImg}
+                        alt="question"
+                      />
                     </div>
                   </div>
                 )}
@@ -90,7 +101,12 @@ export const TbodyCard: React.FC<TbodyType> = memo(({ card, packName, packId }) 
                 ) : (
                   <div className={s.coverContainer}>
                     <div className={s.avaContainer}>
-                      <img className={s.bg} src={t.answerImg} alt="answer" />
+                      <img
+                        onError={errorHandler}
+                        className={s.bg}
+                        src={t.answerImg || defaultImg}
+                        alt="answer"
+                      />
                     </div>
                   </div>
                 )}
@@ -118,7 +134,12 @@ export const TbodyCard: React.FC<TbodyType> = memo(({ card, packName, packId }) 
                 ) : (
                   <div className={s.coverContainer}>
                     <div className={s.avaContainer}>
-                      <img className={s.bg} src={t.questionImg} alt="question" />
+                      <img
+                        onError={errorHandler}
+                        className={s.bg}
+                        src={t.questionImg || defaultImg}
+                        alt="question"
+                      />
                     </div>
                   </div>
                 )}
@@ -129,7 +150,12 @@ export const TbodyCard: React.FC<TbodyType> = memo(({ card, packName, packId }) 
                 ) : (
                   <div className={s.coverContainer}>
                     <div className={s.avaContainer}>
-                      <img className={s.bg} src={t.answerImg} alt="answer" />
+                      <img
+                        onError={errorHandler}
+                        className={s.bg}
+                        src={t.answerImg || defaultImg}
+                        alt="answer"
+                      />
                     </div>
                   </div>
                 )}
