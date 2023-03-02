@@ -8,10 +8,9 @@ import { Link } from 'react-router-dom'
 
 import s from './AccountMenu.module.scss'
 
-import ava from 'assets/ava.png'
+import defaultAva from 'assets/default.png'
 import { PATH } from 'common/constans/path'
 import { useAppDispatch, useAppSelector } from 'common/hooks'
-import { userNameHandler } from 'common/utils'
 import { authUserIdSelector, authUserInfoSelector } from 'features/auth/authSelectors'
 import { logoutTC } from 'features/auth/authSlice'
 import { setSearchParams } from 'features/packs/packsSlice'
@@ -19,7 +18,7 @@ import { setSearchParams } from 'features/packs/packsSlice'
 export function AccountMenu() {
   const dispatch = useAppDispatch()
   const user = useAppSelector(authUserInfoSelector)
-  let userAvatar = user.avatar
+  let userAvatar = user.avatar || defaultAva
   const user_id = useAppSelector(authUserIdSelector)
   const logoutHandler = () => {
     dispatch(logoutTC())

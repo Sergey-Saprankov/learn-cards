@@ -14,10 +14,9 @@ type ModalType = {
   className?: string
   children?: ReactNode
   isOpen: boolean
-  onClose?: () => void
 }
 
-export const Modal: FC<ModalType> = memo(({ children, onClose, isOpen, className }) => {
+export const Modal: FC<ModalType> = memo(({ children, isOpen, className }) => {
   const dispatch = useAppDispatch()
   const isClosing = useAppSelector(isClosingForAnimation)
   const debouncedValue = useDebounce<boolean>(isClosing, 350)
