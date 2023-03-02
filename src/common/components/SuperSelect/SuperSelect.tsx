@@ -35,6 +35,23 @@ export const SuperSelect: FC<SuperSelectPropsType> = memo(
       <FormControl sx={{ m: 1, minWidth: 120 }} size="small">
         <InputLabel id="demo-select-small">rows</InputLabel>
         <Select
+          sx={{
+            '.MuiInputBase-root': {
+              color: '#000',
+            },
+            '.MuiFormLabel-root': {
+              color: '#000',
+              '&:focus': {
+                color: '#000',
+              },
+              '&:hover': {
+                color: '#000',
+              },
+              '&:active': {
+                color: '#000',
+              },
+            },
+          }}
           className={s.select}
           value={'' + value}
           labelId="demo-select-small"
