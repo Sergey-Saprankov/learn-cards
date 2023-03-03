@@ -1,4 +1,4 @@
-import React, { memo } from 'react'
+import React, { memo, ChangeEvent } from 'react'
 
 import { CardType } from '../../cardType'
 import s from '../LearnCardItem/LearnCardItem.module.scss'
@@ -6,6 +6,7 @@ import { AnswerStatuses } from '../learnCardSlice'
 
 import { GradesItem } from './GradesItem/GradesItem'
 
+import defaultAva from 'assets/notFound.jpg'
 import { Button } from 'common/components/Button/Button'
 
 type FormWrapperType = {
@@ -19,6 +20,23 @@ type FormWrapperType = {
 
 export const LearnCardItem = memo(
   ({ card, title, isChecked, onChangeChecked, onNext, onShowAnswer }: FormWrapperType) => {
+    console.log(card)
+    const errorImgHandler = (e: ChangeEvent<HTMLImageElement>) => {
+      e.currentTarget.src = defaultAva
+    }
+    const answer =
+      card.answerImg === 'null' ? (
+        card.answer
+      ) : (
+        <img onError={errorImgHandler} src={card.answerImg} alt="answer" />
+      )
+    const question =
+      card.questionImg === 'null' ? (
+        card.question
+      ) : (
+        <img onError={errorImgHandler} src={card.questionImg} alt="question" />
+      )
+
     return (
       <div className={s.container}>
         <div className={s.wrapper}>
@@ -29,13 +47,13 @@ export const LearnCardItem = memo(
               <div className={s.questionBlock}>
                 <h3>Question:</h3>
                 <div className={s.questionItem}>
-                  <div className={s.question}>{card.question}</div>
+                  <div className={s.question}>{question}</div>
                 </div>
               </div>
               <div className={s.answerBlock}>
                 <h3>Answer:</h3>
                 <div className={s.answerItem}>
-                  {isChecked && <div className={s.answer}>{card.answer}</div>}
+                  {isChecked && <div className={s.answer}>{answer}</div>}
                   {!isChecked && (
                     <Button onClick={onShowAnswer} className={`${s.btn} ${s.color}`}>
                       Show answer
