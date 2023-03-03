@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/learn-cards/static/css/main.06ef37e0.css",
-    "main.js": "/learn-cards/static/js/main.d0336427.js",
+    "main.js": "/learn-cards/static/js/main.7fb5ed97.js",
     "static/js/787.42edc0ed.chunk.js": "/learn-cards/static/js/787.42edc0ed.chunk.js",
     "static/media/emptyPack.png": "/learn-cards/static/media/emptyPack.e02a877fd69d7c8e984e.png",
     "static/media/logo.svg": "/learn-cards/static/media/logo.33b671d1302c36f3b1deea49061f92b0.svg",
@@ -22,11 +22,11 @@
     "static/media/arrowDown.svg": "/learn-cards/static/media/arrowDown.7863facd33a18ceb917433b7fa246d64.svg",
     "static/media/arrow.svg": "/learn-cards/static/media/arrow.9c43ee4473c188dca31578cbfa023bb9.svg",
     "main.06ef37e0.css.map": "/learn-cards/static/css/main.06ef37e0.css.map",
-    "main.d0336427.js.map": "/learn-cards/static/js/main.d0336427.js.map",
+    "main.7fb5ed97.js.map": "/learn-cards/static/js/main.7fb5ed97.js.map",
     "787.42edc0ed.chunk.js.map": "/learn-cards/static/js/787.42edc0ed.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.06ef37e0.css",
-    "static/js/main.d0336427.js"
+    "static/js/main.7fb5ed97.js"
   ]
 }
