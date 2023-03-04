@@ -54,7 +54,7 @@ export const PackMenu: FC<PackMenuType> = ({ title, packId }) => {
     dispatch(setSearchCardParams({ page: 1, pageCount: searchParams.cardsTotalCount }))
     if (id) dispatch(fetchCardTC(id))
 
-    return navigate(PATH.CARD_LEARN)
+    return navigate(`${PATH.CARD_LEARN}/${packId}`)
   }
 
   return (

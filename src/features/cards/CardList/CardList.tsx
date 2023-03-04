@@ -49,7 +49,6 @@ export const CardList = () => {
   useEffect(
     function () {
       if (!id) return
-      console.log('card useEffect')
 
       dispatch(fetchCardTC(id))
     },

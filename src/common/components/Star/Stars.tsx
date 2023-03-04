@@ -8,7 +8,7 @@ import s from './Stars.module.scss'
 export const Stars = memo(() => {
   const [active, setActive] = useState(1)
 
-  const gradesCardLearn = useAppSelector(state => state.learnCard)
+  const gradesCardLearn = useAppSelector(state => state.learnCard.learnCard)
 
   return (
     <>

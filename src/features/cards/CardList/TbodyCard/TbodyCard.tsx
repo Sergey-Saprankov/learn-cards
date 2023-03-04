@@ -48,9 +48,7 @@ export const TbodyCard: React.FC<TbodyType> = memo(({ card, packName, packId }) 
 
   const isMyCard = userId === packUserId
 
-  useEffect(() => {
-    console.log(userId === packUserId)
-  }, [packUserId, dispatch, userId])
+  useEffect(() => {}, [packUserId, dispatch, userId])
 
   return (
     <>

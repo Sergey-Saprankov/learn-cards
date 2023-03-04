@@ -128,20 +128,6 @@
           font-size: 16px;
           line-height: 24px;
         }
-
-        //button {
-        //  display: flex;
-        //  align-items: center;
-        //  justify-content: center;
-        //  white-space: nowrap;
-        //  border-radius: 20px;
-        //  color: rgb(255, 255, 255);
-        //  cursor: pointer;
-        //  transition: all 0.2s ease 0s;
-        //  box-shadow: rgba(32, 48, 73, 0.35) 0px 4px 18px;
-        //  padding: 7px 30px;
-        //  font-size: 16px;
-        //}
       }
 
       .discriptionBlock {
@@ -182,4 +168,19 @@
 
 .color {
   background-color: #212121;
+}
+
+.imgContainer {
+  width: 160px;
+  height: 160px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 1em;
+  overflow: hidden;
+
+  .img {
+    width: 100%;
+    height: auto;
+  }
 }

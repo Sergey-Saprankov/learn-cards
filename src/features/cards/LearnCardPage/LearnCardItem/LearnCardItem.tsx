@@ -20,7 +20,6 @@ type FormWrapperType = {
 
 export const LearnCardItem = memo(
   ({ card, title, isChecked, onChangeChecked, onNext, onShowAnswer }: FormWrapperType) => {
-    console.log(card)
     const errorImgHandler = (e: ChangeEvent<HTMLImageElement>) => {
       e.currentTarget.src = defaultAva
     }
@@ -28,13 +27,27 @@ export const LearnCardItem = memo(
       card.answerImg === 'null' ? (
         card.answer
       ) : (
-        <img onError={errorImgHandler} src={card.answerImg} alt="answer" />
+        <div className={s.imgContainer}>
+          <img
+            className={s.img}
+            onError={errorImgHandler}
+            src={card.answerImg ? card.answerImg : defaultAva}
+            alt="answer"
+          />
+        </div>
       )
     const question =
       card.questionImg === 'null' ? (
         card.question
       ) : (
-        <img onError={errorImgHandler} src={card.questionImg} alt="question" />
+        <div className={s.imgContainer}>
+          <img
+            className={s.img}
+            onError={errorImgHandler}
+            src={card.questionImg ? card.questionImg : defaultAva}
+            alt="question"
+          />
+        </div>
       )
 
     return (
