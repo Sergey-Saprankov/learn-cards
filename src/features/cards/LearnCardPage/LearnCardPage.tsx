@@ -59,7 +59,7 @@ export const LearnCardPage = memo(() => {
   }, [])
 
   const onClickBackWard = () => {
-    dispatch(setSearchCardParams({ page: 1, pageCount: 10 }))
+    dispatch(setSearchCardParams({ page: 1, pageCount: 4 }))
 
     return navigate(-1)
   }
