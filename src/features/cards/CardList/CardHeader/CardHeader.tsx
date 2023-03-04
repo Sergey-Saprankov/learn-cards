@@ -1,4 +1,4 @@
-import React, { FC, memo, useState, useEffect, ChangeEvent } from 'react'
+import React, { FC, memo, ChangeEvent } from 'react'
 
 import { useDispatch } from 'react-redux'
 import { useNavigate, useParams } from 'react-router-dom'
@@ -14,7 +14,7 @@ import { PackMenu } from 'common/components/PackMenu/PackMenu'
 import { PATH } from 'common/constans/path'
 import { useAppSelector } from 'common/hooks/useAppSelector'
 import { userNameHandler } from 'common/utils'
-import { authUserIdSelector, authUserInfoSelector } from 'features/auth/authSelectors'
+import { authUserIdSelector } from 'features/auth/authSelectors'
 import { packDeckCover } from 'features/packs/packsSelectors'
 
 type CardHeaderType = {}
