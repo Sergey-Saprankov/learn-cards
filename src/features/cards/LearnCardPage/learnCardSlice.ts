@@ -1,7 +1,5 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 
-import { CardType } from '../cardType'
-
 export enum AnswerStatuses {
   IsNoActive = 0,
   IsActive = 1,

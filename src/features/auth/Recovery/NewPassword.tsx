@@ -16,7 +16,7 @@ import { PATH } from 'common/constans/path'
 import { useAppDispatch, useAppSelector } from 'common/hooks'
 import { formHandler } from 'common/utils'
 
-export const NewPassword = () => {
+const NewPassword = () => {
   const { resetPasswordToken } = useParams()
   const isPasswordChanged = useAppSelector(isPasswordChangedSelector)
   const dispatch = useAppDispatch()
@@ -62,3 +62,5 @@ export const NewPassword = () => {
     </FormWrapper>
   )
 }
+
+export default NewPassword

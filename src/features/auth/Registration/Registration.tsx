@@ -16,7 +16,7 @@ import { PATH } from 'common/constans/path'
 import { useAppDispatch, useAppSelector } from 'common/hooks'
 import { formHandler } from 'common/utils'
 
-export const Registration = () => {
+const Registration = () => {
   const isRegistered = useAppSelector(isRegisteredSelector)
   const isLoggedIn = useAppSelector(isLoggedInSelector)
   const dispatch = useAppDispatch()
@@ -83,3 +83,5 @@ export const Registration = () => {
     </FormWrapper>
   )
 }
+
+export default Registration

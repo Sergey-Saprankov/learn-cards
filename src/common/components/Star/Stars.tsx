@@ -1,4 +1,4 @@
-import React, { FC, memo, useRef, useState } from 'react'
+import React, { memo, useState } from 'react'
 
 import { useAppSelector } from '../../hooks'
 

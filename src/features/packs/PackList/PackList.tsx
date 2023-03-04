@@ -16,7 +16,6 @@ import {
 import s from './PackList.module.scss'
 import { PacksHeader } from './PacksHeader/PacksHeader'
 
-import { EmptyPackSearch } from 'common/components/EmptyPackSearch/EmptyPackSearch'
 import SuperPagination from 'common/components/IgnatTasksComponents/c9-SuperPagination/SuperPagination'
 import { Search } from 'common/components/Search/Search'
 import { SearchPanel } from 'common/components/SearchPanel/SearchPanel'
@@ -28,7 +27,7 @@ import { isLoggedInSelector } from 'features/auth/authSelectors'
 import { TbodyPack } from 'features/packs/PackList/TbodyPack/TbodyPack'
 import { fetchPacksTC, setSearchParams } from 'features/packs/packsSlice'
 
-export const PackList = () => {
+const PackList = () => {
   const packList = useAppSelector(packsListSelector)
   const packs = useAppSelector(packsSelector)
   const isLoggedIn = useAppSelector(isLoggedInSelector)
@@ -89,3 +88,5 @@ export const PackList = () => {
     </div>
   )
 }
+
+export default PackList

@@ -1,20 +1,21 @@
 import { FieldValues } from 'react-hook-form'
 import { Navigate } from 'react-router-dom'
 
-import { Button } from '../../../common/components/Button/Button'
-import { CheckBox } from '../../../common/components/CheckBox/CheckBox'
-import { FormWrapper } from '../../../common/components/Form/FormWrapper/FormWrapper'
-import s from '../../../common/components/Form/FormWrapper/FormWrapper.module.scss'
-import { Input } from '../../../common/components/Input/Input'
-import { PATH } from '../../../common/constans/path'
-import { useAppDispatch, useAppSelector } from '../../../common/hooks'
-import { formHandler } from '../../../common/utils'
 import { isLoggedInSelector } from '../authSelectors'
 import { loginTC } from '../authSlice'
 
 import style from './Login.module.scss'
 
-export const Login = () => {
+import { Button } from 'common/components/Button/Button'
+import { CheckBox } from 'common/components/CheckBox/CheckBox'
+import { FormWrapper } from 'common/components/Form/FormWrapper/FormWrapper'
+import s from 'common/components/Form/FormWrapper/FormWrapper.module.scss'
+import { Input } from 'common/components/Input/Input'
+import { PATH } from 'common/constans/path'
+import { useAppDispatch, useAppSelector } from 'common/hooks'
+import { formHandler } from 'common/utils'
+
+const Login = () => {
   const dispatch = useAppDispatch()
   const isLoggedIn = useAppSelector(isLoggedInSelector)
   const { errorEmail, errorPassword, handleSubmit, isValid, register } = formHandler(
@@ -64,3 +65,5 @@ export const Login = () => {
     </FormWrapper>
   )
 }
+
+export default Login

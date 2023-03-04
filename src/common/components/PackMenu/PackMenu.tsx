@@ -3,12 +3,11 @@ import { FC } from 'react'
 
 import Menu from '@mui/material/Menu'
 import MenuItem from '@mui/material/MenuItem'
-import { Navigate, useNavigate, useParams } from 'react-router-dom'
-
-import { setModalStatus } from '../../../app/appSlice'
+import { useNavigate, useParams } from 'react-router-dom'
 
 import s from './PackMenu.module.scss'
 
+import { setModalStatus } from 'app/appSlice'
 import Delete from 'assets/Delete.svg'
 import dots from 'assets/dots.svg'
 import edit from 'assets/Edit.svg'

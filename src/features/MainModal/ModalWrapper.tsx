@@ -1,4 +1,4 @@
-import React, { FC, memo, ReactNode } from 'react'
+import React, { FC, memo } from 'react'
 
 import { ModalStatus } from 'app/appSlice'
 import { Modal } from 'common/components/Modal/Modal'

@@ -1,8 +1,6 @@
-import React, { ChangeEvent, useState, memo, FC } from 'react'
+import React, { ChangeEvent, memo, FC } from 'react'
 
 import s from './SelectionFile.module.scss'
-
-import { useAppDispatch } from 'common/hooks'
 
 type SelectionFileType = {
   onChange?: (file: string) => void

@@ -2,7 +2,6 @@ import React, { memo, useCallback, useEffect, useState } from 'react'
 
 import { useNavigate, useParams } from 'react-router-dom'
 
-import arrow from '../../../assets/arrow.svg'
 import { cardSelector, packNameCardSelector } from '../CardList/cardSelectors'
 import { fetchCardTC, setSearchCardParams, updatedGradeTC } from '../cardSlice'
 import { CardType } from '../cardType'
@@ -11,10 +10,11 @@ import s from '../LearnCardPage/LearnCardPage.module.scss'
 import { LearnCardItem } from './LearnCardItem/LearnCardItem'
 import { AnswerStatuses, changeStatus, resetStatus } from './learnCardSlice'
 
+import arrow from 'assets/arrow.svg'
 import { useAppDispatch, useAppSelector } from 'common/hooks'
 import { getCard } from 'common/utils/getCard'
 
-export const LearnCardPage = memo(() => {
+const LearnCardPage = memo(() => {
   const [isChecked, setIsChecked] = useState<boolean>(false)
   const [grade, setGrade] = useState<number>(0)
   const [first, setFirst] = useState<boolean>(false)
@@ -85,3 +85,5 @@ export const LearnCardPage = memo(() => {
     </div>
   )
 })
+
+export default LearnCardPage

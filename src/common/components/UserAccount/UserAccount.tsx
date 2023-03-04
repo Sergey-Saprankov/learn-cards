@@ -1,4 +1,4 @@
-import React, { ChangeEvent, useState } from 'react'
+import React, { ChangeEvent } from 'react'
 
 import { Navigate, useNavigate } from 'react-router-dom'
 
@@ -17,14 +17,13 @@ import { userNameHandler } from 'common/utils/userNameHandler'
 import { authUserInfoSelector, isLoggedInSelector } from 'features/auth/authSelectors'
 import { logoutTC, updateUserTC } from 'features/auth/authSlice'
 
-export const UserAccount = () => {
-  const [ava, setAva] = useState(defaultAva)
+const UserAccount = () => {
   const dispatch = useAppDispatch()
   const navigate = useNavigate()
   const isLoggedIn = useAppSelector(isLoggedInSelector)
   const user = useAppSelector(authUserInfoSelector)
   const userName = userNameHandler(user.name, 26)
-  let userAvatar = user.avatar
+  let userAvatar = user.avatar ? user.avatar : defaultAva
 
   const errorHandler = () => {
     userAvatar = defaultAva
@@ -103,3 +102,5 @@ export const UserAccount = () => {
     </div>
   )
 }
+
+export default UserAccount

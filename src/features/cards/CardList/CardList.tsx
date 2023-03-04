@@ -25,7 +25,7 @@ import { Thead } from 'common/components/Table/Thead/Thead'
 import { useAppDispatch, useAppSelector } from 'common/hooks'
 import { TbodyCard } from 'features/cards/CardList/TbodyCard/TbodyCard'
 
-export const CardList = () => {
+const CardList = () => {
   const dispatch = useAppDispatch()
   const { id } = useParams<{ id: string }>()
   const navigate = useNavigate()
@@ -87,3 +87,5 @@ export const CardList = () => {
     </div>
   )
 }
+
+export default CardList

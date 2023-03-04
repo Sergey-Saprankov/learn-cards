@@ -1,14 +1,13 @@
-import React, { FC, memo, ReactNode, MouseEvent, useEffect, useState, useCallback } from 'react'
+import React, { FC, memo, ReactNode, MouseEvent, useEffect } from 'react'
 
-import { set } from 'react-hook-form'
-
-import { isClosingForAnimation } from '../../../app/appSelectors'
-import { isClosingModal, setModalStatus } from '../../../app/appSlice'
-import { useAppDispatch, useAppSelector, useDebounce } from '../../hooks'
 import { classNames } from '../../utils/classNames'
 import { Portal } from '../Portal/Portal'
 
 import s from './Modal.module.scss'
+
+import { isClosingForAnimation } from 'app/appSelectors'
+import { isClosingModal, setModalStatus } from 'app/appSlice'
+import { useAppDispatch, useAppSelector, useDebounce } from 'common/hooks'
 
 type ModalType = {
   className?: string

@@ -16,7 +16,7 @@ import { PATH } from 'common/constans/path'
 import { useAppDispatch, useAppSelector } from 'common/hooks'
 import { formHandler } from 'common/utils'
 
-export const Recovery = () => {
+const Recovery = () => {
   const descriptionText = 'Enter your email address and we will send you further instructions'
   const messageSend = useAppSelector(isMessageSendSelector)
   const dispatch = useAppDispatch()
@@ -58,3 +58,5 @@ export const Recovery = () => {
     </FormWrapper>
   )
 }
+
+export default Recovery

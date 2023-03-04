@@ -1,5 +1,6 @@
 import React, { DetailedHTMLProps, FC, memo, SelectHTMLAttributes } from 'react'
 
+import { common } from '@mui/material/colors'
 import FormControl from '@mui/material/FormControl'
 import InputLabel from '@mui/material/InputLabel'
 import MenuItem from '@mui/material/MenuItem'
@@ -17,51 +18,39 @@ type SuperSelectPropsType = DefaultSelectPropsType & {
   onChangeOption?: (option: any) => void
 }
 
-export const SuperSelect: FC<SuperSelectPropsType> = memo(
-  ({ options, className, onChange, onChangeOption, value, ...restProps }) => {
-    const mappedOptions: any[] = options
-      ? options.map(o => (
-          <MenuItem key={o.id} value={o.id}>
-            {o.value}
-          </MenuItem>
-        ))
-      : []
+export const SuperSelect: FC<SuperSelectPropsType> = memo(({ options, onChangeOption, value }) => {
+  const mappedOptions: any[] = options
+    ? options.map(o => (
+        <MenuItem key={o.id} value={o.id}>
+          {o.value}
+        </MenuItem>
+      ))
+    : []
 
-    const onChangeCallback = (e: SelectChangeEvent) => {
-      onChangeOption?.(e.target.value)
-    }
-
-    return (
-      <FormControl sx={{ m: 1, minWidth: 120 }} size="small">
-        <InputLabel id="demo-select-small">rows</InputLabel>
-        <Select
-          sx={{
-            '.MuiInputBase-root': {
-              color: '#000',
-            },
-            '.MuiFormLabel-root': {
-              color: '#000',
-              '&:focus': {
-                color: '#000',
-              },
-              '&:hover': {
-                color: '#000',
-              },
-              '&:active': {
-                color: '#000',
-              },
-            },
-          }}
-          className={s.select}
-          value={'' + value}
-          labelId="demo-select-small"
-          id="demo-select-small"
-          label="rows"
-          onChange={onChangeCallback}
-        >
-          {mappedOptions}
-        </Select>
-      </FormControl>
-    )
+  const onChangeCallback = (e: SelectChangeEvent) => {
+    onChangeOption?.(e.target.value)
   }
-)
+
+  return (
+    <FormControl sx={{ m: 1, minWidth: 120 }} size="small">
+      <InputLabel id="demo-select-small">rows</InputLabel>
+      <Select
+        sx={{
+          palette: {
+            primary: {
+              main: common.black,
+            },
+          },
+        }}
+        className={s.select}
+        value={'' + value}
+        labelId="demo-select-small"
+        id="demo-select-small"
+        label="rows"
+        onChange={onChangeCallback}
+      >
+        {mappedOptions}
+      </Select>
+    </FormControl>
+  )
+})

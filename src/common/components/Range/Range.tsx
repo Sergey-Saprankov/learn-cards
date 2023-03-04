@@ -2,11 +2,10 @@ import React, { ChangeEvent, KeyboardEvent, useEffect, useState } from 'react'
 
 import { Slider } from '@mui/material'
 
-import { packsAllSearchParametersSelector } from '../../../features/packs/packsSelectors'
-
 import s from './Range.module.scss'
 
 import { useAppDispatch, useAppSelector } from 'common/hooks'
+import { packsAllSearchParametersSelector } from 'features/packs/packsSelectors'
 import { setSearchParams } from 'features/packs/packsSlice'
 
 export const Range = () => {
@@ -54,10 +53,7 @@ export const Range = () => {
     setValue(newValue as number[])
   }
 
-  const handleChangeCommitted = (
-    event: React.SyntheticEvent | Event,
-    newValue: number | number[]
-  ) => {
+  const handleChangeCommitted = () => {
     dispatch(setSearchParams({ ...params, min: value[0], max: value[1] }))
   }
 

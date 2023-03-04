@@ -2,7 +2,7 @@ import React, { useState, FC, memo, useEffect } from 'react'
 
 import s from './Select.module.scss'
 
-import { modalStatus, isClosingForAnimation } from 'app/appSelectors'
+import { isClosingForAnimation } from 'app/appSelectors'
 import arrow from 'assets/arrowDown.svg'
 import { useAppSelector } from 'common/hooks'
 import { classNames } from 'common/utils/classNames'

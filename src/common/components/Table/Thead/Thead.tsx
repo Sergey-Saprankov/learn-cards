@@ -5,7 +5,6 @@ import s from './Thead.module.scss'
 import { CardListType, PackListType, setSortStatusCards, setSortStatusPack } from 'app/appSlice'
 import sort from 'assets/sortTable.svg'
 import { useAppDispatch, useAppSelector } from 'common/hooks'
-import { classNames } from 'common/utils/classNames'
 import { setSearchCardParams } from 'features/cards/cardSlice'
 import { setSearchParams } from 'features/packs/packsSlice'
 
@@ -15,7 +14,7 @@ type TheadType = {
   className?: string
 }
 
-export const Thead: React.FC<TheadType> = memo(({ packList, cardList, className }) => {
+export const Thead: React.FC<TheadType> = memo(({ packList, cardList }) => {
   const dispatch = useAppDispatch()
   const params = useAppSelector(state => state.packs.searchParams)
   const sortParam = packList ? packList : cardList
