@@ -13,13 +13,12 @@ type FormWrapperType = {
   card: CardType
   title: string
   isChecked: boolean
-  onChangeChecked: (isActive: AnswerStatuses, grade: number) => void
   onNext: () => void
   onShowAnswer: () => void
 }
 
 export const LearnCardItem = memo(
-  ({ card, title, isChecked, onChangeChecked, onNext, onShowAnswer }: FormWrapperType) => {
+  ({ card, title, isChecked, onNext, onShowAnswer }: FormWrapperType) => {
     const errorImgHandler = (e: ChangeEvent<HTMLImageElement>) => {
       e.currentTarget.src = defaultAva
     }
@@ -81,7 +80,7 @@ export const LearnCardItem = memo(
               </div>
               {isChecked && (
                 <>
-                  <GradesItem onChangeChecked={onChangeChecked} />
+                  <GradesItem />
                   <Button onClick={onNext} className={`${s.btn} ${s.color}`}>
                     Next
                   </Button>

@@ -1,14 +1,14 @@
-import React, { memo, useCallback, useEffect, useState } from 'react'
+import React, { memo, useCallback, useState } from 'react'
 
-import { useNavigate, useParams } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 
 import { cardSelector, packNameCardSelector } from '../CardList/cardSelectors'
-import { fetchCardTC, setSearchCardParams, updatedGradeTC } from '../cardSlice'
+import { setSearchCardParams, updatedGradeTC } from '../cardSlice'
 import { CardType } from '../cardType'
 import s from '../LearnCardPage/LearnCardPage.module.scss'
 
 import { LearnCardItem } from './LearnCardItem/LearnCardItem'
-import { AnswerStatuses, changeStatus, resetStatus } from './learnCardSlice'
+import { resetStatus, setGrade } from './learnCardSlice'
 
 import arrow from 'assets/arrow.svg'
 import { useAppDispatch, useAppSelector } from 'common/hooks'
@@ -16,9 +16,9 @@ import { getCard } from 'common/utils/getCard'
 
 const LearnCardPage = memo(() => {
   const [isChecked, setIsChecked] = useState<boolean>(false)
-  const [grade, setGrade] = useState<number>(0)
-  const [first, setFirst] = useState<boolean>(false)
-  let { packId } = useParams<{ packId: string }>()
+  const grade = useAppSelector(state => state.learnCard.grade)
+
+  console.log(grade)
 
   const packName = useAppSelector(packNameCardSelector)
   const cards = useAppSelector(cardSelector)
@@ -27,26 +27,8 @@ const LearnCardPage = memo(() => {
 
   const [card, setCard] = useState<CardType>(cards[0])
 
-  useEffect(() => {
-    if (!packId) return
-    if (first) {
-      dispatch(fetchCardTC(packId))
-      setFirst(false)
-    }
-
-    if (cards.length > 0) setCard(getCard(cards))
-
-    return () => {}
-  }, [packId, cards, first, grade])
-
-  const onChangeChecked = useCallback((isActive: AnswerStatuses, grade: number) => {
-    setGrade(grade)
-    dispatch(resetStatus())
-    dispatch(changeStatus({ id: grade, status: isActive }))
-  }, [])
-
   const onNext = useCallback(() => {
-    dispatch(updatedGradeTC({ grade: grade, card_id: card._id }))
+    dispatch(updatedGradeTC({ grade: grade, card_id: card._id })).then(() => dispatch(setGrade(1)))
     setIsChecked(false)
     dispatch(resetStatus())
     if (cards.length > 0) {
@@ -76,7 +58,6 @@ const LearnCardPage = memo(() => {
             title={packName}
             card={card}
             isChecked={isChecked}
-            onChangeChecked={onChangeChecked}
             onNext={onNext}
             onShowAnswer={onShowAnswer}
           />
