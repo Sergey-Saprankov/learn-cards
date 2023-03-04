@@ -18,8 +18,6 @@ const LearnCardPage = memo(() => {
   const [isChecked, setIsChecked] = useState<boolean>(false)
   const grade = useAppSelector(state => state.learnCard.grade)
 
-  console.log(grade)
-
   const packName = useAppSelector(packNameCardSelector)
   const cards = useAppSelector(cardSelector)
   const navigate = useNavigate()
